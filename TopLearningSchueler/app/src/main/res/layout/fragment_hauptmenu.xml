@@ -1,0 +1,63 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="com.example.daniel.toplearningschueler.Hauptmenu">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Name"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Willkommen!"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/imageView2"
+        android:layout_alignRight="@+id/btn_termine"
+        android:layout_alignEnd="@+id/btn_termine" />
+
+    <Button
+        android:text="Stunde Buchen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/btn_stunde"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/textView3"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Meine Termine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_termine"
+        android:layout_marginTop="45dp"
+        android:layout_alignTop="@+id/btn_stunde"
+        android:layout_alignLeft="@+id/btn_stunde"
+        android:layout_alignStart="@+id/btn_stunde"
+        android:layout_alignRight="@+id/btn_stunde"
+        android:layout_alignEnd="@+id/btn_stunde" />
+
+    <ImageView
+        android:layout_width="225dp"
+        android:layout_height="225dp"
+        android:src="@drawable/logo"
+        android:foregroundGravity="center"
+        android:id="@+id/imageView2"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="59dp"
+        android:layout_marginStart="59dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>

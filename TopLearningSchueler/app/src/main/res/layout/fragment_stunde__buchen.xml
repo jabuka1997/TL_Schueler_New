@@ -1,0 +1,130 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context="com.example.daniel.toplearningschueler.Stunde_Buchen">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <TextView
+        android:text="Datum"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="110dp"
+        android:id="@+id/tv_datum" />
+
+    <TextView
+        android:text="Uhrzeit"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="110dp"
+        android:layout_marginLeft="200dp"
+        android:id="@+id/tv_uhrzeit" />
+
+    <TextView
+        android:text="Einheiten"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="center_vertical"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_einheiten" />
+
+    <Spinner
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/sp_einheiten" />
+
+    <TextView
+        android:text="Lehrer(optional)"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_gravity="center_vertical"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_lehrer" />
+
+    <Spinner
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="85dp"
+        android:id="@+id/sp_lehrer" />
+
+    <Button
+        android:text="Verbindlich Buchen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="190dp"
+        android:id="@+id/btn_vb" />
+
+    <EditText
+        android:layout_width="132dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_gravity="center_vertical"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"
+        android:focusable="false"
+        android:id="@+id/et_date" />
+
+    <EditText
+        android:layout_width="30dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_gravity="center_vertical"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"
+        android:layout_marginLeft="250dp"
+        android:hint="m"
+        android:maxLength="2"
+        android:inputType="datetime"
+        android:id="@+id/et_minute" />
+
+    <EditText
+        android:layout_width="30dp"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_gravity="center_vertical"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"
+        android:layout_marginLeft="200dp"
+        android:hint="h"
+        android:maxLength="2"
+        android:inputType="datetime"
+        android:id="@+id/et_hour" />
+
+    <TextView
+        android:text=":"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="80dp"
+        android:layout_marginLeft="240dp"
+        android:id="@+id/tv_fill" />
+
+    <Spinner
+        android:layout_width="148dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="170dp"
+        android:id="@+id/sp_fach"
+        />
+
+    <TextView
+        android:text="Fach"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="190dp"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/tv_fach" />
+
+
+</FrameLayout>
