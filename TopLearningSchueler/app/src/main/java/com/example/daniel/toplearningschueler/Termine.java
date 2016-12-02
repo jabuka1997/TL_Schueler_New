@@ -30,6 +30,7 @@ public class Termine extends Fragment {
     private List<Termin> Terminliste = new ArrayList<Termin>();
     private List<String> Spinnerlist = new ArrayList<String>();
     private List<Termin> Terminlistenew = new ArrayList<Termin>();
+    public List<Termin> Baricistgay = new ArrayListy<Termin>();
     ArrayAdapter<Termin> adapter;
     ListView mylist;
 
