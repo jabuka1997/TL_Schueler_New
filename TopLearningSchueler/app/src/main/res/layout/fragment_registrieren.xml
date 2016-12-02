@@ -215,7 +215,7 @@
             <Spinner
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinner"
+                android:id="@+id/sp_schultyp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/textView10" />
@@ -226,14 +226,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:id="@+id/textView11"
-                android:layout_below="@+id/spinner"
+                android:layout_below="@+id/sp_schultyp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
             <Spinner
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinner1"
+                android:id="@+id/sp_schulstufe"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/textView11"/>
@@ -244,7 +244,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:id="@+id/textView12"
-                android:layout_below="@+id/spinner1"
+                android:layout_below="@+id/sp_schulstufe"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -284,7 +284,7 @@
             <Spinner
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinner2"
+                android:id="@+id/sp_anrede"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/textView14"/>
@@ -296,7 +296,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:id="@+id/textView15"
-                android:layout_below="@+id/spinner2"
+                android:layout_below="@+id/sp_anrede"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -304,7 +304,7 @@
             <Spinner
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:id="@+id/spinner3"
+                android:id="@+id/sp_verhältnis"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/textView15"/>
@@ -316,7 +316,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:id="@+id/textView16"
-                android:layout_below="@+id/spinner3"
+                android:layout_below="@+id/sp_verhältnis"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -350,8 +350,8 @@
                 android:layout_marginStart="39dp"
                 android:layout_marginTop="5dp"
                 android:layout_below="@+id/textView4"
-                android:layout_toRightOf="@+id/spinner"
-                android:layout_toEndOf="@+id/spinner">
+                android:layout_toRightOf="@+id/sp_schultyp"
+                android:layout_toEndOf="@+id/sp_schultyp">
 
                 <RadioButton
                     android:id="@+id/radioM"

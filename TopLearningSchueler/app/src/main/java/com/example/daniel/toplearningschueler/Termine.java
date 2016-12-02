@@ -8,7 +8,6 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -18,7 +17,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 
 
@@ -30,7 +28,6 @@ public class Termine extends Fragment {
     private List<Termin> Terminliste = new ArrayList<Termin>();
     private List<String> Spinnerlist = new ArrayList<String>();
     private List<Termin> Terminlistenew = new ArrayList<Termin>();
-    public List<Termin> Baricistgay = new ArrayListy<Termin>();
     ArrayAdapter<Termin> adapter;
     ListView mylist;
 
@@ -75,7 +72,7 @@ public class Termine extends Fragment {
 
 
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getActivity().getApplicationContext(), android.R.layout.simple_spinner_item, Spinnerlist);
-        final Spinner sinner = (Spinner) view.findViewById(R.id.spinner);
+        final Spinner sinner = (Spinner) view.findViewById(R.id.sp_schultyp);
         sinner.setAdapter(adapter1);
         sinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
