@@ -10,6 +10,50 @@
     <!-- TODO: Update blank fragment layout -->
 
 
+    <RelativeLayout
+        android:id="@+id/layout_button"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_gravity="bottom">
+
+
+        <Button
+            android:text="Registrieren"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_register"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+
+        <RadioButton
+            android:text="Ich aktzeptiere die "
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radioButton3"
+            android:layout_alignParentTop="true"
+            android:layout_toStartOf="@+id/btn_agb"
+            android:layout_toLeftOf="@+id/btn_agb" />
+
+        <Button
+            android:text="AGBS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_agb"
+            android:background="@android:color/transparent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="63dp"
+            android:layout_marginEnd="63dp"
+
+            android:layout_alignBottom="@+id/radioButton3"
+            android:layout_toRightOf="@+id/btn_register"
+            android:layout_toEndOf="@+id/btn_register" />
+
+
+    </RelativeLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="400dp"
@@ -24,17 +68,6 @@
             android:layout_height="wrap_content"
             >
 
-
-            <EditText
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:hint="Vorname..."
-                android:ems="10"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:id="@+id/editText" />
 
             <EditText
                 android:layout_width="300dp"
@@ -278,12 +311,22 @@
 
 
             <TextView
-                android:text=""
+                android:text="Passwort"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:id="@+id/textView16"
                 android:layout_below="@+id/spinner3"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:text=""
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:id="@+id/textView17"
+                android:layout_below="@+id/editText11"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -356,52 +399,31 @@
                 android:layout_alignRight="@+id/editText9"
                 android:layout_alignEnd="@+id/editText9" />
 
+            <EditText
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:hint="Vorname..."
+                android:ems="10"
+                android:id="@+id/editText"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:layout_below="@+id/textView16"
+                android:id="@+id/editText11"
+                android:layout_alignRight="@+id/editText10"
+                android:layout_alignEnd="@+id/editText10"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
         </RelativeLayout>
     </ScrollView>
-
-    <RelativeLayout
-        android:id="@+id/layout_button"
-        android:layout_width="match_parent"
-        android:layout_height="72dp"
-        android:layout_gravity="bottom">
-
-
-        <Button
-            android:text="Registrieren"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/btn_register"
-            android:gravity="center"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
-
-        <RadioButton
-            android:text="Ich aktzeptiere die "
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/radioButton3"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/button"
-            android:layout_toStartOf="@+id/button" />
-
-        <Button
-            android:text="AGBS"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/button"
-            android:background="@android:color/transparent"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginRight="63dp"
-            android:layout_marginEnd="63dp"
-
-            android:layout_alignBottom="@+id/radioButton3"
-            android:layout_toRightOf="@+id/btn_register"
-            android:layout_toEndOf="@+id/btn_register" />
-
-
-    </RelativeLayout>
 
 </FrameLayout>
 
