@@ -75,18 +75,18 @@
                 android:inputType="textPersonName"
                 android:hint="Nachname..."
                 android:ems="10"
-                android:layout_below="@+id/editText"
+                android:layout_below="@+id/et_vorname"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:id="@+id/editText2"
-                android:layout_alignRight="@+id/editText"
-                android:layout_alignEnd="@+id/editText" />
+                android:id="@+id/et_nachname"
+                android:layout_alignRight="@+id/et_vorname"
+                android:layout_alignEnd="@+id/et_vorname" />
 
             <TextView
                 android:text="Geburtsdatum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/editText2"
+                android:layout_below="@+id/et_nachname"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="16dp"
@@ -101,14 +101,14 @@
                 android:layout_below="@+id/textView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:id="@+id/editText3"
+                android:id="@+id/et_birthday"
                  />
 
             <TextView
                 android:text="Adresse"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/editText3"
+                android:layout_below="@+id/et_birthday"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="16dp"
@@ -120,17 +120,17 @@
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:layout_below="@+id/textView5"
-                android:id="@+id/editText4"
+                android:id="@+id/et_address"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignRight="@+id/editText2"
-                android:layout_alignEnd="@+id/editText2" />
+                android:layout_alignRight="@+id/et_nachname"
+                android:layout_alignEnd="@+id/et_nachname" />
 
             <TextView
                 android:text="PLZ"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/editText4"
+                android:layout_below="@+id/et_address"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_marginTop="16dp"
@@ -153,7 +153,7 @@
                 android:layout_below="@+id/textView6"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:id="@+id/editText5"
+                android:id="@+id/et_plz"
                 android:layout_alignRight="@+id/textView5"
                 android:layout_alignEnd="@+id/textView5" />
 
@@ -165,9 +165,9 @@
                 android:layout_below="@+id/textView7"
                 android:layout_alignLeft="@+id/textView7"
                 android:layout_alignStart="@+id/textView7"
-                android:id="@+id/editText6"
-                android:layout_alignRight="@+id/editText4"
-                android:layout_alignEnd="@+id/editText4" />
+                android:id="@+id/et_ort"
+                android:layout_alignRight="@+id/et_address"
+                android:layout_alignEnd="@+id/et_address" />
 
             <TextView
                 android:text="Email"
@@ -175,7 +175,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:id="@+id/textView8"
-                android:layout_below="@+id/editText5"
+                android:layout_below="@+id/et_plz"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -184,12 +184,12 @@
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:ems="10"
-                android:id="@+id/editText7"
+                android:id="@+id/et_email"
                 android:layout_below="@+id/textView8"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignRight="@+id/editText6"
-                android:layout_alignEnd="@+id/editText6" />
+                android:layout_alignRight="@+id/et_ort"
+                android:layout_alignEnd="@+id/et_ort" />
 
 
             <TextView
@@ -198,7 +198,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:id="@+id/textView9"
-                android:layout_below="@+id/editText7"
+                android:layout_below="@+id/et_email"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -208,7 +208,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:id="@+id/textView10"
-                android:layout_below="@+id/editText8"
+                android:layout_below="@+id/et_telefon"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -253,12 +253,12 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/editText9"
+                android:id="@+id/et_vornameerz"
                 android:layout_below="@+id/textView12"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignRight="@+id/editText8"
-                android:layout_alignEnd="@+id/editText8" />
+                android:layout_alignRight="@+id/et_telefon"
+                android:layout_alignEnd="@+id/et_telefon" />
 
             <TextView
                 android:text="Nachname Erziehungsb."
@@ -266,7 +266,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:id="@+id/textView13"
-                android:layout_below="@+id/editText9"
+                android:layout_below="@+id/et_vornameerz"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -277,7 +277,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:id="@+id/textView14"
-                android:layout_below="@+id/editText10"
+                android:layout_below="@+id/et_nachnameerz"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -326,7 +326,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:id="@+id/textView17"
-                android:layout_below="@+id/editText11"
+                android:layout_below="@+id/et_pw"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
@@ -336,7 +336,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView4"
-                android:layout_above="@+id/editText3"
+                android:layout_above="@+id/et_birthday"
                 android:layout_alignLeft="@+id/radioGrp"
                 android:layout_alignStart="@+id/radioGrp" />
 
@@ -363,8 +363,9 @@
                     android:textSize="14dp"
                     android:text="M"
                     />
+
                 <RadioButton
-                    android:id="@+id/radioF"
+                    android:id="@+id/radioW"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
@@ -380,24 +381,24 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:ems="10"
-                android:id="@+id/editText8"
+                android:id="@+id/et_telefon"
                 android:layout_below="@+id/textView9"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignRight="@+id/editText7"
-                android:layout_alignEnd="@+id/editText7" />
+                android:layout_alignRight="@+id/et_email"
+                android:layout_alignEnd="@+id/et_email" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:inputType="textPersonName"
                 android:ems="10"
-                android:id="@+id/editText10"
+                android:id="@+id/et_nachnameerz"
                 android:layout_below="@+id/textView13"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_alignRight="@+id/editText9"
-                android:layout_alignEnd="@+id/editText9" />
+                android:layout_alignRight="@+id/et_vornameerz"
+                android:layout_alignEnd="@+id/et_vornameerz" />
 
             <EditText
                 android:layout_width="300dp"
@@ -405,7 +406,7 @@
                 android:inputType="textPersonName"
                 android:hint="Vorname..."
                 android:ems="10"
-                android:id="@+id/editText"
+                android:id="@+id/et_vorname"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
@@ -416,9 +417,9 @@
                 android:inputType="textPassword"
                 android:ems="10"
                 android:layout_below="@+id/textView16"
-                android:id="@+id/editText11"
-                android:layout_alignRight="@+id/editText10"
-                android:layout_alignEnd="@+id/editText10"
+                android:id="@+id/et_pw"
+                android:layout_alignRight="@+id/et_nachnameerz"
+                android:layout_alignEnd="@+id/et_nachnameerz"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
