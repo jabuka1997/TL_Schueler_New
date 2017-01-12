@@ -10,6 +10,9 @@ public class Termin {
     private String Fach;
     private Lehrer MeinLehrer;
 
+
+
+
     public Termin(String datum, String uhrzeit, String fach, Lehrer mylehrer)
     {
         Datum = datum;
