@@ -218,7 +218,8 @@
                 android:id="@+id/sp_schultyp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/textView10" />
+                android:layout_below="@+id/textView10"
+                android:prompt="@string/styp_auswählen"/>
 
             <TextView
                 android:text="Schulstufe"
@@ -236,7 +237,8 @@
                 android:id="@+id/sp_schulstufe"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/textView11"/>
+                android:layout_below="@+id/textView11"
+                android:prompt="@string/sstufe_auswählen"/>
 
             <TextView
                 android:text="Vorname Erziehungsb."
@@ -272,7 +274,7 @@
 
 
             <TextView
-                android:text="Anrede Erziehungsb."
+                android:text="Verhältnis"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -281,33 +283,11 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
 
-            <Spinner
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/sp_anrede"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/textView14"/>
 
 
-            <TextView
-                android:text="Verhältnis"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:id="@+id/textView15"
-                android:layout_below="@+id/sp_anrede"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
 
 
-            <Spinner
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/sp_verhältnis"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:layout_below="@+id/textView15"/>
+
 
 
             <TextView
@@ -422,6 +402,15 @@
                 android:layout_alignEnd="@+id/et_nachnameerz"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true" />
+
+            <Spinner
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/sp_verhältnis"
+                android:layout_below="@+id/textView14"
+                android:layout_alignRight="@+id/textView13"
+                android:layout_alignEnd="@+id/textView13"
+                android:prompt="@string/ver_auswählen"/>
 
         </RelativeLayout>
     </ScrollView>

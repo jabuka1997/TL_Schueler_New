@@ -28,7 +28,7 @@
             android:id="@+id/nav_register"
             android:title="Register"
 
-            />
+            android:visible="true" />
 
 
     </group>
