@@ -30,6 +30,7 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
 
     public void onDateSet(DatePicker view, int year, int month, int day) {
         Toast.makeText(getContext(), "Date : " + day + "/" + (month + 1) + "/" + year, Toast.LENGTH_LONG).show();
-        ((TextView) getActivity().findViewById(R.id.et_date)).setText(day + "/" + (month + 1) + "/" + year);
+        ((TextView) getActivity().findViewById(R.id.et_date)).setText(day + "." + (month + 1) + "." + year);
+
     }
 }

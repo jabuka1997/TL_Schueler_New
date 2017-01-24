@@ -32,6 +32,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -161,6 +162,8 @@ public class Registrieren extends Fragment implements View.OnClickListener {
 
             }
         });
+
+
         ArrayAdapter<String> adapter3 = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_item, Spinnerlist3);
         adapter3.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         spVerhältnis.setAdapter(adapter3);
@@ -192,8 +195,6 @@ public class Registrieren extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-
-
         switch (v.getId()) {
             case R.id.btn_register:
                 if (rbAGB.isChecked()) {
@@ -220,19 +221,39 @@ public class Registrieren extends Fragment implements View.OnClickListener {
                     String NachnameErz = etNachnameErz.getText().toString().trim();
                     String verhältnis = Verhältnis;
 
-
-                    if (!GBDatum.isEmpty() && !Vorname.isEmpty() &&
-                            !Nachname.isEmpty() && !Adresse.isEmpty() &&
-                            !PLZ.isEmpty() && !Ort.isEmpty() && !Email.isEmpty() && !Telefon.isEmpty() && !schultyp.isEmpty() &&
-                            !schulstufe.isEmpty() && !Passwort.isEmpty() && !VornameErz.isEmpty() && !NachnameErz.isEmpty() && !verhältnis.isEmpty())
+                    int year = Integer.parseInt(GBDatum.split(".")[2]);
+                    int currentyear = Calendar.getInstance().get(Calendar.YEAR);
+                    int h = currentyear - year;
+                    if (h < 18)
                     {
-
-
+                        if (!GBDatum.isEmpty() && !Vorname.isEmpty() &&
+                                !Nachname.isEmpty() && !Adresse.isEmpty() &&
+                                !PLZ.isEmpty() && !Ort.isEmpty() && !Email.isEmpty() && !Telefon.isEmpty() && !schultyp.isEmpty() &&
+                                !schulstufe.isEmpty() && !Passwort.isEmpty() && !VornameErz.isEmpty() && !NachnameErz.isEmpty() && !verhältnis.isEmpty())
+                        {
+                            registerUser(GBDatum, Vorname, Nachname, Gender, Adresse, PLZ,Ort,Email,Telefon,schultyp,schulstufe,Passwort,VornameErz, NachnameErz, verhältnis);
+                        }
+                        else
+                        {
+                            Toast.makeText(getActivity().getApplicationContext(), "Sie müssen alle Felder ausfüllen!", Toast.LENGTH_LONG).show();
+                        }
                     }
                     else
                     {
-                        Toast.makeText(getActivity().getApplicationContext(), "Sie müssen alle Felder ausfüllen!", Toast.LENGTH_LONG).show();
+                        if (!GBDatum.isEmpty() && !Vorname.isEmpty() &&
+                                !Nachname.isEmpty() && !Adresse.isEmpty() &&
+                                !PLZ.isEmpty() && !Ort.isEmpty() && !Email.isEmpty() && !Telefon.isEmpty() && !schultyp.isEmpty() &&
+                                !schulstufe.isEmpty() && !Passwort.isEmpty())
+                        {
+                            registerUser(GBDatum, Vorname, Nachname, Gender, Adresse, PLZ, Ort, Email, Telefon, schultyp, schulstufe, Passwort, VornameErz, NachnameErz, verhältnis);
+                        }
+                        else
+                        {
+                            Toast.makeText(getActivity().getApplicationContext(), "Sie müssen alle Felder ausfüllen!", Toast.LENGTH_LONG).show();
+                        }
                     }
+
+
 
                     break;
                 }
@@ -244,6 +265,7 @@ public class Registrieren extends Fragment implements View.OnClickListener {
 
         }
     }
+
     private void registerUser(final String gbdatum, final String vorname, final String nachname, final String gender, final String adresse,
                               final String plz, final String ort, final String email, final String telefon, final String schulttyp, final String schulstufe,
                               final String passwort, final String vornameerz, final String nachnameerz, final String verhältnis)

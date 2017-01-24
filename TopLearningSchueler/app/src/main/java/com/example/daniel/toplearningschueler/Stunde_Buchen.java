@@ -36,16 +36,23 @@ import static android.widget.Toast.makeText;
  * A simple {@link Fragment} subclass.
  */
 
-public class Stunde_Buchen extends Fragment{
+public class Stunde_Buchen extends Fragment implements View.OnClickListener{
 
 
 
     Button btnvb;
     EditText etDate, etStunde, etMinute;
-    Spinner spFach;
-    ArrayAdapter<String> adapter;
-    List<String> list;
+    Spinner spFach, spEinheiten, spLehrer;
 
+    ArrayAdapter<String> adapter1;
+    ArrayAdapter<String> adapter2;
+    ArrayAdapter<String> adapter3;
+    List<String> list= new ArrayList<String>();
+    List<String> list2= new ArrayList<String>();
+    List<String> list3= new ArrayList<String>();
+    String Fach;
+    String Einheiten;
+    String Lehrer;
     public Stunde_Buchen() {
         // Required empty public constructor
     }
@@ -55,34 +62,18 @@ public class Stunde_Buchen extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_stunde__buchen, container, false);
+        getActivity().setTitle("Stunde Buchen");
 
         etStunde = (EditText) view.findViewById(R.id.et_hour);
         etMinute = (EditText) view.findViewById(R.id.et_minute);
         btnvb = (Button) view.findViewById(R.id.btn_vb);
         etDate = (EditText) view.findViewById(R.id.et_date);
         spFach = (Spinner) view.findViewById(R.id.sp_fach);
-
-        getActivity().setTitle("Stunde Buchen");
-
-        btnvb.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        spEinheiten = (Spinner) view.findViewById(R.id.sp_einheiten);
+        spLehrer = (Spinner) view.findViewById(R.id.sp_lehrer);
 
 
-                try {
-                    if (Integer.parseInt(etStunde.getText().toString()) >= 0 && Integer.parseInt(etStunde.getText().toString()) <= 23 && Integer.parseInt(etMinute.getText().toString()) >= 0 && Integer.parseInt(etMinute.getText().toString()) <= 59) {
-                        Toast.makeText(getContext(), "Stunde gebucht!", Toast.LENGTH_LONG).show();
-                    }
-                    else
-                        Toast.makeText(getContext(), "Bitte überprüfen Sie Ihre Eingaben!", Toast.LENGTH_LONG).show();
 
-                }
-                catch (Exception e)
-                {
-                    Toast.makeText(getContext(), "Bitte überprüfen Sie Ihre Eingaben!", Toast.LENGTH_LONG).show();
-                }
-            }
-        });
 
 
 
@@ -94,31 +85,28 @@ public class Stunde_Buchen extends Fragment{
         });
 
 
-        list = new ArrayList<String>();
-        list.add("Item 1");
-        list.add("Item 2");
-        list.add("Item 3");
-        list.add("Item 4");
-        list.add("Item 5");
-        adapter = new ArrayAdapter<String>(getActivity().getApplicationContext(),
-                android.R.layout.simple_spinner_item, list);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spFach.setAdapter(adapter);
+
+        list.add("Mathematik");
+        list.add("Deutsch");
+        list.add("Englisch");
+        list.add("Latein");
+
+
+        adapter1 = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_item, list);
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spFach.setAdapter(adapter1);
         spFach.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long l) {
+                if (i == 0)
+                    return;
+                else {
+                    String pos = (String) spFach.getItemAtPosition(i);
 
-                switch (position) {
-                    case 0:
-
-                        break;
-                    case 1:
-                        Toast.makeText(parent.getContext(), "Spinner item 2!", Toast.LENGTH_SHORT).show();
-                        break;
-                    case 2:
-                        Toast.makeText(parent.getContext(), "Spinner item 3!", Toast.LENGTH_SHORT).show();
-                        break;
+                    Fach = pos;
                 }
+
             }
 
             @Override
@@ -127,13 +115,107 @@ public class Stunde_Buchen extends Fragment{
                 // sometimes you need nothing here
             }
         });
+
+
+        for (int i = 2 ; i <= 5; i++)
+        {
+            list2.add(Integer.toString(i));
+        }
+
+
+        adapter2 = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_item, list2);
+        adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spEinheiten.setAdapter(adapter2);
+        spEinheiten.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long l) {
+                long pos;
+                if (i == 0)
+                    return;
+                else {
+                    pos = spEinheiten.getItemIdAtPosition(i);
+                    ++pos;
+                }
+                Einheiten = Long.toString(pos);
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+                // sometimes you need nothing here
+            }
+        });
+
+        list3.add("Herr Huber");
+        list3.add("Max Mustermann");
+        list3.add("Frau Schmidt");
+
+
+        adapter3 = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_item, list3);
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        spLehrer.setAdapter(adapter3);
+        spLehrer.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long l) {
+                if (i == 0)
+                    return;
+                else {
+                    String pos = (String) spLehrer.getItemAtPosition(i);
+
+                    Lehrer = pos;
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+                // sometimes you need nothing here
+            }
+        });
+
+
         // Inflate the layout for this fragment
         return view;
     }
 
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId())
+        {
+            case R.id.btn_vb:
+
+                        String fach = Fach;
+                        String einheiten = Einheiten;
+                        String lehrer = Lehrer;
+
+                        String datum = etDate.getText().toString().trim();
+                        String stunde = etStunde.getText().toString().trim();
+                        String minute = etMinute.getText().toString().trim();
+
+                        try {
+                            if (Integer.parseInt(etStunde.getText().toString()) >= 0 && Integer.parseInt(etStunde.getText().toString()) <= 23
+                                    && Integer.parseInt(etMinute.getText().toString()) >= 0 && Integer.parseInt(etMinute.getText().toString()) <= 59
+                                    && !fach.isEmpty() && !einheiten.isEmpty() && !lehrer.isEmpty() && !datum.isEmpty() && !stunde.isEmpty() && !minute.isEmpty()) {
+                                Toast.makeText(getContext(), "Stunde gebucht!", Toast.LENGTH_LONG).show();
+                            }
+                            else
+                                Toast.makeText(getContext(), "Bitte überprüfen Sie Ihre Eingaben!", Toast.LENGTH_LONG).show();
+
+                        }
+                        catch (Exception e)
+                        {
+                            Toast.makeText(getContext(), "Bitte überprüfen Sie Ihre Eingaben!", Toast.LENGTH_LONG).show();
+                        }
 
 
+                break;
+        }
+    }
 }
 
 
