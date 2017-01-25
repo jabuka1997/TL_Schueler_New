@@ -1,6 +1,7 @@
 package com.example.daniel.toplearningschueler;
 
 
+import android.app.DownloadManager;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Environment;
@@ -21,9 +22,11 @@ import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -56,7 +59,10 @@ public class Registrieren extends Fragment implements View.OnClickListener {
     String Schulttyp;
     String Schulstufe;
     String Verhältnis;
+    String GBDatum, Vorname, Nachname, Gender, Adresse, PLZ, Ort, Email, Telefon, schultyp, schulstufe, Passwort, VornameErz, NachnameErz, verhältnis;
+    int h;
 
+    View v;
     public Registrieren() {
         // Required empty public constructor
     }
@@ -69,6 +75,7 @@ public class Registrieren extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_registrieren, container, false);
         getActivity().setTitle("Registrieren");
 
+        v = view;
         spSchultyp = (Spinner) view.findViewById(R.id.sp_schultyp);
         spSchulstufe = (Spinner) view.findViewById(R.id.sp_schulstufe);
         spVerhältnis = (Spinner) view.findViewById(R.id.sp_verhältnis);
@@ -76,7 +83,7 @@ public class Registrieren extends Fragment implements View.OnClickListener {
 
         etVorname = (EditText) view.findViewById(R.id.et_vorname);
         etNachname = (EditText) view.findViewById(R.id.et_nachname);
-        etDatum = (EditText) view.findViewById(R.id.et_date);
+        etDatum = (EditText) view.findViewById(R.id.et_birthday);
         etAdresse = (EditText) view.findViewById(R.id.et_address);
         etPLZ = (EditText) view.findViewById(R.id.et_plz);
         etOrt = (EditText) view.findViewById(R.id.et_ort);
@@ -126,13 +133,11 @@ public class Registrieren extends Fragment implements View.OnClickListener {
         spSchultyp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if (i == 0)
-                    return;
-                else {
+
                     String pos = (String)spSchultyp.getItemAtPosition(i);
 
                     Schulttyp = pos;
-                }
+
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -149,13 +154,16 @@ public class Registrieren extends Fragment implements View.OnClickListener {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 long pos;
-                if (i == 0)
-                    return;
-               else {
+
                     pos = spSchulstufe.getItemIdAtPosition(i);
-                    ++pos;
-                }
-                Schulstufe = Long.toString(pos);
+                    pos++;
+                    Schulstufe = Long.toString(pos);
+
+
+
+
+
+
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -171,16 +179,9 @@ public class Registrieren extends Fragment implements View.OnClickListener {
         spVerhältnis.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                int pos = spVerhältnis.getSelectedItemPosition();
-                switch (pos) {
-                    case 0:
-                        Verhältnis = "Vater";
-                        break;
-                    case 1:
-                        Verhältnis = "Mutter";
-                        break;
+                String pos = (String)spVerhältnis.getItemAtPosition(i);
+                Verhältnis = pos;
 
-                }
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -203,65 +204,87 @@ public class Registrieren extends Fragment implements View.OnClickListener {
                     } else if (rbGenderW.isChecked()) {
                         isGender = "w";
                     }
-                    String GBDatum = etDatum.getText().toString().trim();
-                    String Vorname = etVorname.getText().toString().trim();
-                    String Nachname = etNachname.getText().toString().trim();
-                    String Gender = isGender;
-                    String Adresse = etAdresse.getText().toString().trim();
-                    String PLZ = etPLZ.getText().toString().trim();
-                    String Ort = etOrt.getText().toString().trim();
-                    String Email = etEmail.getText().toString().trim();
+                    if (!etDatum.getText().toString().isEmpty()) {
+                        int year = 2005;
+                        int currentyear = Calendar.getInstance().get(Calendar.YEAR);
+                        h = currentyear - year;
+                    }
+                    else {
+                        Toast.makeText(getActivity().getApplicationContext(), "Sie müssen ein Geburtsdatum angeben!", Toast.LENGTH_LONG).show();
 
-                    String Telefon = etTelefon.getText().toString().trim();
-
-                    String schultyp = Schulttyp;
-                    String schulstufe = Schulstufe;
-                    String Passwort = etPW.getText().toString().trim();
-                    String VornameErz = etVornameErz.getText().toString().trim();
-                    String NachnameErz = etNachnameErz.getText().toString().trim();
-                    String verhältnis = Verhältnis;
-
-                    int year = Integer.parseInt(GBDatum.split(".")[2]);
-                    int currentyear = Calendar.getInstance().get(Calendar.YEAR);
-                    int h = currentyear - year;
-                    if (h < 18)
+                    }
+                    if (h >= 18)
                     {
-                        if (!GBDatum.isEmpty() && !Vorname.isEmpty() &&
-                                !Nachname.isEmpty() && !Adresse.isEmpty() &&
-                                !PLZ.isEmpty() && !Ort.isEmpty() && !Email.isEmpty() && !Telefon.isEmpty() && !schultyp.isEmpty() &&
-                                !schulstufe.isEmpty() && !Passwort.isEmpty() && !VornameErz.isEmpty() && !NachnameErz.isEmpty() && !verhältnis.isEmpty())
+                        if (!etDatum.getText().toString().isEmpty() && !etVorname.getText().toString().isEmpty() &&
+                                !etNachname.getText().toString().isEmpty() && !etAdresse.getText().toString().isEmpty() &&
+                                !etPLZ.getText().toString().isEmpty() && !etOrt.getText().toString().isEmpty() &&
+                                !etEmail.getText().toString().isEmpty() && !etTelefon.getText().toString().isEmpty() && !Schulttyp.isEmpty() &&
+                                !Schulstufe.isEmpty() && !etPW.getText().toString().isEmpty())
                         {
-                            registerUser(GBDatum, Vorname, Nachname, Gender, Adresse, PLZ,Ort,Email,Telefon,schultyp,schulstufe,Passwort,VornameErz, NachnameErz, verhältnis);
+
+                            GBDatum = etDatum.getText().toString().trim();
+                            Vorname = etVorname.getText().toString().trim();
+                            Nachname = etNachname.getText().toString().trim();
+                            Gender = isGender;
+                            Adresse = etAdresse.getText().toString().trim();
+                            PLZ = etPLZ.getText().toString().trim();
+                            Ort = etOrt.getText().toString().trim();
+                            Email = etEmail.getText().toString().trim();
+
+                            Telefon = etTelefon.getText().toString().trim();
+
+                            schultyp = Schulttyp;
+                            schulstufe = Schulstufe;
+                            Passwort = etPW.getText().toString().trim();
+
+                            registerUser(GBDatum, Vorname, Nachname, Gender, Adresse, PLZ, Ort, Email, Telefon, schultyp, schulstufe, Passwort, "", "", "");
                         }
                         else
                         {
                             Toast.makeText(getActivity().getApplicationContext(), "Sie müssen alle Felder ausfüllen!", Toast.LENGTH_LONG).show();
                         }
+                    }
+                    else if (!etDatum.getText().toString().isEmpty() && !etVorname.getText().toString().isEmpty() &&
+                            !etNachname.getText().toString().isEmpty() && !etAdresse.getText().toString().isEmpty() &&
+                            !etPLZ.getText().toString().isEmpty() && !etOrt.getText().toString().isEmpty() &&
+                            !etEmail.getText().toString().isEmpty() && !etTelefon.getText().toString().isEmpty() && !Schulttyp.isEmpty() &&
+                            !Schulstufe.isEmpty() && !etPW.getText().toString().isEmpty() && !etVornameErz.getText().toString().isEmpty() &&
+                            !etNachnameErz.getText().toString().isEmpty() && !Verhältnis.isEmpty())
+                    {
+                        GBDatum = etDatum.getText().toString().trim();
+                        Vorname = etVorname.getText().toString().trim();
+                        Nachname = etNachname.getText().toString().trim();
+                        Gender = isGender;
+                        Adresse = etAdresse.getText().toString().trim();
+                        PLZ = etPLZ.getText().toString().trim();
+                        Ort = etOrt.getText().toString().trim();
+                        Email = etEmail.getText().toString().trim();
+
+                        Telefon = etTelefon.getText().toString().trim();
+
+                        schultyp = Schulttyp;
+                        schulstufe = Schulstufe;
+                        Passwort = etPW.getText().toString().trim();
+                        VornameErz = etVornameErz.getText().toString().trim();
+                        NachnameErz = etNachnameErz.getText().toString().trim();
+                        verhältnis = Verhältnis;
+
+                        registerUser(GBDatum, Vorname, Nachname, Gender, Adresse, PLZ,Ort,Email,Telefon,schultyp,schulstufe,Passwort,VornameErz, NachnameErz, verhältnis);
                     }
                     else
                     {
-                        if (!GBDatum.isEmpty() && !Vorname.isEmpty() &&
-                                !Nachname.isEmpty() && !Adresse.isEmpty() &&
-                                !PLZ.isEmpty() && !Ort.isEmpty() && !Email.isEmpty() && !Telefon.isEmpty() && !schultyp.isEmpty() &&
-                                !schulstufe.isEmpty() && !Passwort.isEmpty())
-                        {
-                            registerUser(GBDatum, Vorname, Nachname, Gender, Adresse, PLZ, Ort, Email, Telefon, schultyp, schulstufe, Passwort, VornameErz, NachnameErz, verhältnis);
-                        }
-                        else
-                        {
-                            Toast.makeText(getActivity().getApplicationContext(), "Sie müssen alle Felder ausfüllen!", Toast.LENGTH_LONG).show();
-                        }
+                        Toast.makeText(getActivity().getApplicationContext(), "Sie müssen alle Felder ausfüllen!", Toast.LENGTH_LONG).show();
                     }
 
 
 
-                    break;
+
                 }
                 else
                 {
                     Toast.makeText(getActivity().getApplicationContext(), "Sie müssen die AGBs aktzeptieren!", Toast.LENGTH_LONG).show();
                 }
-
+                break;
 
         }
     }
@@ -308,20 +331,20 @@ public class Registrieren extends Fragment implements View.OnClickListener {
                 params.put("Ort", ort);
                 params.put("Email", email);
                 params.put("Telefon", telefon);
-                params.put("schultyp", schulttyp);
-                params.put("schulstufe", schulstufe);
+                params.put("Schultyp", schulttyp);
+                params.put("Schulstufe", schulstufe);
                 params.put("Passwort", passwort);
                 params.put("VornameErz", vornameerz);
                 params.put("NachnameErz", nachnameerz);
-                params.put("Verhältnis", verhältnis);
+                params.put("Verhaeltnis", verhältnis);
 
                 return params;
-
-
 
 
             }
         };
 
+        RequestQueue requestQueue = Volley.newRequestQueue(v.getContext());
+        requestQueue.add(strReg);
     }
 }

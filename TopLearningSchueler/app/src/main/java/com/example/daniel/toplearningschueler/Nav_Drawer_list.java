@@ -2,6 +2,7 @@ package com.example.daniel.toplearningschueler;
 
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -119,13 +120,31 @@ public class Nav_Drawer_list extends AppCompatActivity
             ft.replace(R.id.fragment_container, e1).addToBackStack("tag").commit();
 
         }
-        else if (id == R.id.nav_register) {
-            Registrieren r1 = new Registrieren();
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
-            ft.replace(R.id.fragment_container, r1).addToBackStack("tag").commit();
+        else if (id == R.id.nav_logout) {
+            DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    switch (which){
+                        case DialogInterface.BUTTON_POSITIVE:
+                            Intent i = new Intent(Nav_Drawer_list.this, Start_Fenster.class);
+                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(i);
+                            break;
+
+                        case DialogInterface.BUTTON_NEGATIVE:
+                            //No button clicked
+                            break;
+                    }
+                }
+            };
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Sind Sie sicher?").setPositiveButton("Ja", dialogClickListener)
+                    .setNegativeButton("Nein", dialogClickListener).show();
 
         }
+
+
 
 
 

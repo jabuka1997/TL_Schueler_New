@@ -56,16 +56,17 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="450dp"
         android:scrollIndicators="right"
         android:fillViewport="true"
-        android:layout_marginBottom="15dp"
+        android:layout_marginBottom="50dp"
         android:layout_gravity="center_vertical">
 
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             >
 
 
@@ -261,6 +262,8 @@
                 android:layout_alignParentStart="true"
                 android:layout_alignRight="@+id/et_telefon"
                 android:layout_alignEnd="@+id/et_telefon" />
+
+
 
             <TextView
                 android:text="Nachname Erziehungsb."
