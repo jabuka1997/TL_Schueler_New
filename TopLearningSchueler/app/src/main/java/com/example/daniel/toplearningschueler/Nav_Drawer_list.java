@@ -19,23 +19,30 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.nio.BufferUnderflowException;
+
 public class Nav_Drawer_list extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     NavigationView navigationView =  null;
     Toolbar toolbar = null;
 
+    Intent i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nav__drawer_list);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        i = getIntent();
 
 
         Hauptmenu f1 = new Hauptmenu();
+        Bundle b = new Bundle();
+        b.putInt("ID", i.getIntExtra("ID", 0));
+        f1.setArguments(b);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, f1);
         fragmentTransaction.commit();
@@ -101,6 +108,9 @@ public class Nav_Drawer_list extends AppCompatActivity
 
         } else if (id == R.id.nav_buchen) {
             Stunde_Buchen s1 = new Stunde_Buchen();
+            Bundle b = new Bundle();
+            b.putInt("ID", i.getIntExtra("ID", 0));
+            s1.setArguments(b);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
             ft.replace(R.id.fragment_container, s1).addToBackStack("tag").commit();

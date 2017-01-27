@@ -67,11 +67,12 @@ public class Stunde_Buchen extends Fragment implements View.OnClickListener{
     String Lehrer;
 
     View v;
-
+int ID;
     String fach, einheiten, lehrer, datum, stunde, minute, fullDatum;
     public Stunde_Buchen() {
         // Required empty public constructor
     }
+
 
 
     @Override
@@ -79,6 +80,9 @@ public class Stunde_Buchen extends Fragment implements View.OnClickListener{
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_stunde__buchen, container, false);
         getActivity().setTitle("Stunde Buchen");
+        Bundle b = getArguments();
+
+        ID = b.getInt("ID");
 
         v = view;
         etStunde = (EditText) view.findViewById(R.id.et_hour);
@@ -133,7 +137,7 @@ public class Stunde_Buchen extends Fragment implements View.OnClickListener{
         });
 
 
-        for (int i = 1 ; i <= 5; i++)
+        for (int i = 2 ; i <= 5; i++)
         {
             list2.add(Integer.toString(i));
         }
@@ -149,7 +153,7 @@ public class Stunde_Buchen extends Fragment implements View.OnClickListener{
                 long pos;
 
                     pos = spEinheiten.getItemIdAtPosition(i);
-                    ++pos;
+                    pos += 2;
                 Einheiten = Long.toString(pos);
 
             }
@@ -215,7 +219,7 @@ public class Stunde_Buchen extends Fragment implements View.OnClickListener{
                                     fullDatum = datum + " " + stunde + ":" + minute + " ";
 
 
-                                    stundebuchen(fach, einheiten, lehrer, fullDatum);
+                                    stundebuchen(fach, einheiten, lehrer, fullDatum, Integer.toString(ID));
 
                                     Toast.makeText(getContext(), "Stunde gebucht!", Toast.LENGTH_LONG).show();
                                 }
@@ -233,7 +237,7 @@ public class Stunde_Buchen extends Fragment implements View.OnClickListener{
                 break;
         }
     }
-    private void stundebuchen(final String fach, final String einheiten, final String lehrer, final String fulldatum)
+    private void stundebuchen(final String fach, final String einheiten, final String lehrer, final String fulldatum, final String BenutzerID)
     {
         StringRequest strReg = new StringRequest(Request.Method.POST, Config.URLSTUNDEBUCHEN, new Response.Listener<String>() {
             @Override
@@ -268,7 +272,7 @@ public class Stunde_Buchen extends Fragment implements View.OnClickListener{
                 params.put("Einheiten", einheiten);
                 params.put("Lehrer", lehrer);
                 params.put("Datum", fulldatum);
-
+                params.put("BenutzerID", BenutzerID);
 
 
                 return params;

@@ -11,8 +11,6 @@ public class Termin {
     private Lehrer MeinLehrer;
 
 
-
-
     public Termin(String datum, String uhrzeit, String fach, Lehrer mylehrer)
     {
         Datum = datum;

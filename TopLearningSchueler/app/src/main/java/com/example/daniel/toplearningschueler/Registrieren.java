@@ -3,6 +3,7 @@ package com.example.daniel.toplearningschueler;
 
 import android.app.DownloadManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.Fragment;
@@ -34,6 +35,8 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InterruptedIOException;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -205,11 +208,14 @@ public class Registrieren extends Fragment implements View.OnClickListener {
                         isGender = "w";
                     }
                     if (!etDatum.getText().toString().isEmpty()) {
-                        int year = 2005;
+                        String datum = etDatum.getText().toString().trim();
+                        String[] yeartime = datum.split("\\.");
+                        int year = Integer.parseInt(yeartime[2]);
                         int currentyear = Calendar.getInstance().get(Calendar.YEAR);
                         h = currentyear - year;
                     }
                     else {
+
                         Toast.makeText(getActivity().getApplicationContext(), "Sie müssen ein Geburtsdatum angeben!", Toast.LENGTH_LONG).show();
 
                     }
@@ -237,7 +243,7 @@ public class Registrieren extends Fragment implements View.OnClickListener {
                             schulstufe = Schulstufe;
                             Passwort = etPW.getText().toString().trim();
 
-                            registerUser(GBDatum, Vorname, Nachname, Gender, Adresse, PLZ, Ort, Email, Telefon, schultyp, schulstufe, Passwort, "", "", "");
+                            registerUser(GBDatum, Vorname, Nachname, Gender, Adresse, PLZ, Ort, Email, Telefon, schultyp, schulstufe, Passwort, " ", " ", " ");
                         }
                         else
                         {
@@ -303,19 +309,25 @@ public class Registrieren extends Fragment implements View.OnClickListener {
                     if (!error)
                     {
                         Toast.makeText(getActivity().getApplicationContext(), "User successfully registered.", Toast.LENGTH_LONG).show();
+                        Intent i = new Intent(getActivity().getApplicationContext(), Start_Fenster.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(i);
                     }
+                    else{
+                        String errormessage = jObj.getString("errormsg");
 
+                        Toast.makeText(getActivity().getApplicationContext(), errormessage, Toast.LENGTH_LONG).show();
+                    }
                 }
                 catch (JSONException e){
                     e.printStackTrace();
                 }
-
-
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getActivity().getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(v.getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+
 
             }
         }) {
@@ -339,8 +351,6 @@ public class Registrieren extends Fragment implements View.OnClickListener {
                 params.put("Verhaeltnis", verhältnis);
 
                 return params;
-
-
             }
         };
 
