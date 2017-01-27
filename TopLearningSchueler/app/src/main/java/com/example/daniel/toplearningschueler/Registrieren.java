@@ -208,6 +208,8 @@ public class Registrieren extends Fragment implements View.OnClickListener {
                         isGender = "w";
                     }
                     if (!etDatum.getText().toString().isEmpty()) {
+
+
                         String datum = etDatum.getText().toString().trim();
                         String[] yeartime = datum.split("\\.");
                         int year = Integer.parseInt(yeartime[2]);

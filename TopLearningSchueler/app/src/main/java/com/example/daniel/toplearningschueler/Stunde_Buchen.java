@@ -62,9 +62,9 @@ public class Stunde_Buchen extends Fragment implements View.OnClickListener{
     List<String> list= new ArrayList<String>();
     List<String> list2= new ArrayList<String>();
     List<String> list3= new ArrayList<String>();
-    String Fach;
-    String Einheiten;
-    String Lehrer;
+    String Fach, Einheiten, Lehrer, lVorname, lNachname;
+
+
 
     View v;
 int ID;
@@ -165,6 +165,7 @@ int ID;
             }
         });
 
+        list3.add(" ");
         list3.add("Herr Huber");
         list3.add("Max Mustermann");
         list3.add("Frau Schmidt");
@@ -212,16 +213,31 @@ int ID;
                                     einheiten = Einheiten;
                                     lehrer = Lehrer;
 
+                                    if (!lehrer.equals(" "))
+                                    {
+                                        lVorname = lehrer.split(" ")[0];
+                                        lNachname = lehrer.split(" ")[1];
+                                    }
+                                    else {
+                                        lVorname = " ";
+                                        lNachname = " ";
+                                    }
+
                                     datum = etDate.getText().toString().trim();
                                     stunde = etStunde.getText().toString().trim();
                                     minute = etMinute.getText().toString().trim();
 
+
+
+
+
+
                                     fullDatum = datum + " " + stunde + ":" + minute + " ";
 
 
-                                    stundebuchen(fach, einheiten, lehrer, fullDatum, Integer.toString(ID));
+                                    stundebuchen(fach, einheiten, lVorname, lNachname, fullDatum, Integer.toString(ID));
 
-                                    Toast.makeText(getContext(), "Stunde gebucht!", Toast.LENGTH_LONG).show();
+
                                 }
                                 else
                                 {
@@ -237,7 +253,7 @@ int ID;
                 break;
         }
     }
-    private void stundebuchen(final String fach, final String einheiten, final String lehrer, final String fulldatum, final String BenutzerID)
+    private void stundebuchen(final String fach, final String einheiten, final String lvorname, final String lnachname, final String fulldatum, final String BenutzerID)
     {
         StringRequest strReg = new StringRequest(Request.Method.POST, Config.URLSTUNDEBUCHEN, new Response.Listener<String>() {
             @Override
@@ -248,7 +264,7 @@ int ID;
 
                     if (!error)
                     {
-                        Toast.makeText(getActivity().getApplicationContext(), "User successfully registered.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getContext().getApplicationContext(), "Stunde gebucht!", Toast.LENGTH_LONG).show();
                     }
 
                 }
@@ -270,7 +286,8 @@ int ID;
                 Map<String, String> params = new HashMap<>();
                 params.put("Fach", fach);
                 params.put("Einheiten", einheiten);
-                params.put("Lehrer", lehrer);
+                params.put("VornameLehrer", lvorname);
+                params.put("NachnameLehrer", lnachname);
                 params.put("Datum", fulldatum);
                 params.put("BenutzerID", BenutzerID);
 
