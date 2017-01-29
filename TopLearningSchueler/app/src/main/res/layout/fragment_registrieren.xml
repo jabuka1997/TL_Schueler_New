@@ -59,7 +59,7 @@
         android:layout_height="450dp"
         android:scrollIndicators="right"
         android:fillViewport="true"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="45dp"
         android:layout_gravity="center_vertical">
 
 
@@ -98,7 +98,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="date"
-                android:hint="TT.MM.JJJJ"
+                android:focusable="false"
                 android:layout_below="@+id/textView"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
@@ -151,24 +151,13 @@
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:ems="10"
+                android:maxLength="4"
                 android:layout_below="@+id/textView6"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:id="@+id/et_plz"
                 android:layout_alignRight="@+id/textView5"
                 android:layout_alignEnd="@+id/textView5" />
-
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:ems="10"
-                android:layout_below="@+id/textView7"
-                android:layout_alignLeft="@+id/textView7"
-                android:layout_alignStart="@+id/textView7"
-                android:id="@+id/et_ort"
-                android:layout_alignRight="@+id/et_address"
-                android:layout_alignEnd="@+id/et_address" />
 
             <TextView
                 android:text="Email"
@@ -414,6 +403,16 @@
                 android:layout_alignRight="@+id/textView13"
                 android:layout_alignEnd="@+id/textView13"
                 android:prompt="@string/ver_auswählen"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/et_ort"
+                android:layout_below="@+id/textView7"
+                android:layout_alignLeft="@+id/textView7"
+                android:layout_alignStart="@+id/textView7" />
 
         </RelativeLayout>
     </ScrollView>

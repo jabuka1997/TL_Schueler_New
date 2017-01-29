@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.os.EnvironmentCompat;
@@ -63,7 +64,7 @@ public class Registrieren extends Fragment implements View.OnClickListener {
     String Schulstufe;
     String Verhältnis;
     String GBDatum, Vorname, Nachname, Gender, Adresse, PLZ, Ort, Email, Telefon, schultyp, schulstufe, Passwort, VornameErz, NachnameErz, verhältnis;
-    int h;
+    int h, sb;
 
     View v;
     public Registrieren() {
@@ -83,6 +84,7 @@ public class Registrieren extends Fragment implements View.OnClickListener {
         spSchulstufe = (Spinner) view.findViewById(R.id.sp_schulstufe);
         spVerhältnis = (Spinner) view.findViewById(R.id.sp_verhältnis);
 
+        sb = 0;
 
         etVorname = (EditText) view.findViewById(R.id.et_vorname);
         etNachname = (EditText) view.findViewById(R.id.et_nachname);
@@ -104,6 +106,20 @@ public class Registrieren extends Fragment implements View.OnClickListener {
         btn_reg = (Button) view.findViewById(R.id.btn_register);
         btn_reg.setOnClickListener(this);
 
+
+        etDatum.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+
+                DialogFragment newFragment = new DatePickerFragment();
+                Bundle b = new Bundle();
+                b.putInt("SB", sb);
+                newFragment.setArguments(b);
+                newFragment.show(getFragmentManager(), "datePicker");
+            }
+        });
+
+
+        Spinnerlist3.add("");
         Spinnerlist3.add("Vater");
         Spinnerlist3.add("Mutter");
 
@@ -201,100 +217,95 @@ public class Registrieren extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_register:
-                if (rbAGB.isChecked()) {
-                    if (rbGenderM.isChecked()) {
-                        isGender = "m";
-                    } else if (rbGenderW.isChecked()) {
-                        isGender = "w";
-                    }
-                    if (!etDatum.getText().toString().isEmpty()) {
+                if (isEmailValid(etEmail.getText().toString().trim())) {
+                    if (rbAGB.isChecked()) {
+                        if (!etDatum.getText().toString().isEmpty()) {
 
 
-                        String datum = etDatum.getText().toString().trim();
-                        String[] yeartime = datum.split("\\.");
-                        int year = Integer.parseInt(yeartime[2]);
-                        int currentyear = Calendar.getInstance().get(Calendar.YEAR);
-                        h = currentyear - year;
+                            if (rbGenderM.isChecked()) {
+                                isGender = "m";
+                            } else if (rbGenderW.isChecked()) {
+                                isGender = "w";
+                            }
+
+
+
+                            if (isUserOver18()) {
+                                if (!etDatum.getText().toString().isEmpty() && !etVorname.getText().toString().isEmpty() &&
+                                        !etNachname.getText().toString().isEmpty() && !etAdresse.getText().toString().isEmpty() &&
+                                        !etPLZ.getText().toString().isEmpty() && !etOrt.getText().toString().isEmpty() &&
+                                        !etEmail.getText().toString().isEmpty() && !etTelefon.getText().toString().isEmpty() && !Schulttyp.isEmpty() &&
+                                        !Schulstufe.isEmpty() && !etPW.getText().toString().isEmpty()) {
+
+                                    GBDatum = etDatum.getText().toString().trim();
+                                    Vorname = etVorname.getText().toString().trim();
+                                    Nachname = etNachname.getText().toString().trim();
+                                    Gender = isGender;
+                                    Adresse = etAdresse.getText().toString().trim();
+                                    PLZ = etPLZ.getText().toString().trim();
+                                    Ort = etOrt.getText().toString().trim();
+                                    Email = etEmail.getText().toString().trim();
+
+                                    Telefon = etTelefon.getText().toString().trim();
+
+                                    schultyp = Schulttyp;
+                                    schulstufe = Schulstufe;
+                                    Passwort = etPW.getText().toString().trim();
+
+                                    registerUser(GBDatum, Vorname, Nachname, Gender, Adresse, PLZ, Ort, Email, Telefon, schultyp, schulstufe, Passwort, "", "", "");
+                                } else {
+                                    Toast.makeText(getActivity().getApplicationContext(), "Sie müssen alle Felder ausfüllen!", Toast.LENGTH_LONG).show();
+                                }
+                            } else if (!etDatum.getText().toString().isEmpty() && !etVorname.getText().toString().isEmpty() &&
+                                    !etNachname.getText().toString().isEmpty() && !etAdresse.getText().toString().isEmpty() &&
+                                    !etPLZ.getText().toString().isEmpty() && !etOrt.getText().toString().isEmpty() &&
+                                    !etEmail.getText().toString().isEmpty() && !etTelefon.getText().toString().isEmpty() && !Schulttyp.isEmpty() &&
+                                    !Schulstufe.isEmpty() && !etPW.getText().toString().isEmpty() && !etVornameErz.getText().toString().isEmpty() &&
+                                    !etNachnameErz.getText().toString().isEmpty() && !Verhältnis.isEmpty()) {
+                                GBDatum = etDatum.getText().toString().trim();
+                                Vorname = etVorname.getText().toString().trim();
+                                Nachname = etNachname.getText().toString().trim();
+                                Gender = isGender;
+                                Adresse = etAdresse.getText().toString().trim();
+                                PLZ = etPLZ.getText().toString().trim();
+                                Ort = etOrt.getText().toString().trim();
+                                Email = etEmail.getText().toString().trim();
+
+                                Telefon = etTelefon.getText().toString().trim();
+
+                                schultyp = Schulttyp;
+                                schulstufe = Schulstufe;
+                                Passwort = etPW.getText().toString().trim();
+                                VornameErz = etVornameErz.getText().toString().trim();
+                                NachnameErz = etNachnameErz.getText().toString().trim();
+                                verhältnis = Verhältnis;
+
+                                registerUser(GBDatum, Vorname, Nachname, Gender, Adresse, PLZ, Ort, Email, Telefon, schultyp, schulstufe, Passwort, VornameErz, NachnameErz, verhältnis);
+                            } else {
+                                Toast.makeText(getActivity().getApplicationContext(), "Sie müssen alle Felder ausfüllen!", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                        else {
+
+                            Toast.makeText(getActivity().getApplicationContext(), "Sie müssen ein Geburtsdatum angeben!", Toast.LENGTH_LONG).show();
+
+                        }
+
+
                     }
                     else {
-
-                        Toast.makeText(getActivity().getApplicationContext(), "Sie müssen ein Geburtsdatum angeben!", Toast.LENGTH_LONG).show();
-
+                        Toast.makeText(getActivity().getApplicationContext(), "Sie müssen die AGBs aktzeptieren!", Toast.LENGTH_LONG).show();
                     }
-                    if (h >= 18)
-                    {
-                        if (!etDatum.getText().toString().isEmpty() && !etVorname.getText().toString().isEmpty() &&
-                                !etNachname.getText().toString().isEmpty() && !etAdresse.getText().toString().isEmpty() &&
-                                !etPLZ.getText().toString().isEmpty() && !etOrt.getText().toString().isEmpty() &&
-                                !etEmail.getText().toString().isEmpty() && !etTelefon.getText().toString().isEmpty() && !Schulttyp.isEmpty() &&
-                                !Schulstufe.isEmpty() && !etPW.getText().toString().isEmpty())
-                        {
-
-                            GBDatum = etDatum.getText().toString().trim();
-                            Vorname = etVorname.getText().toString().trim();
-                            Nachname = etNachname.getText().toString().trim();
-                            Gender = isGender;
-                            Adresse = etAdresse.getText().toString().trim();
-                            PLZ = etPLZ.getText().toString().trim();
-                            Ort = etOrt.getText().toString().trim();
-                            Email = etEmail.getText().toString().trim();
-
-                            Telefon = etTelefon.getText().toString().trim();
-
-                            schultyp = Schulttyp;
-                            schulstufe = Schulstufe;
-                            Passwort = etPW.getText().toString().trim();
-
-                            registerUser(GBDatum, Vorname, Nachname, Gender, Adresse, PLZ, Ort, Email, Telefon, schultyp, schulstufe, Passwort, " ", " ", " ");
-                        }
-                        else
-                        {
-                            Toast.makeText(getActivity().getApplicationContext(), "Sie müssen alle Felder ausfüllen!", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                    else if (!etDatum.getText().toString().isEmpty() && !etVorname.getText().toString().isEmpty() &&
-                            !etNachname.getText().toString().isEmpty() && !etAdresse.getText().toString().isEmpty() &&
-                            !etPLZ.getText().toString().isEmpty() && !etOrt.getText().toString().isEmpty() &&
-                            !etEmail.getText().toString().isEmpty() && !etTelefon.getText().toString().isEmpty() && !Schulttyp.isEmpty() &&
-                            !Schulstufe.isEmpty() && !etPW.getText().toString().isEmpty() && !etVornameErz.getText().toString().isEmpty() &&
-                            !etNachnameErz.getText().toString().isEmpty() && !Verhältnis.isEmpty())
-                    {
-                        GBDatum = etDatum.getText().toString().trim();
-                        Vorname = etVorname.getText().toString().trim();
-                        Nachname = etNachname.getText().toString().trim();
-                        Gender = isGender;
-                        Adresse = etAdresse.getText().toString().trim();
-                        PLZ = etPLZ.getText().toString().trim();
-                        Ort = etOrt.getText().toString().trim();
-                        Email = etEmail.getText().toString().trim();
-
-                        Telefon = etTelefon.getText().toString().trim();
-
-                        schultyp = Schulttyp;
-                        schulstufe = Schulstufe;
-                        Passwort = etPW.getText().toString().trim();
-                        VornameErz = etVornameErz.getText().toString().trim();
-                        NachnameErz = etNachnameErz.getText().toString().trim();
-                        verhältnis = Verhältnis;
-
-                        registerUser(GBDatum, Vorname, Nachname, Gender, Adresse, PLZ,Ort,Email,Telefon,schultyp,schulstufe,Passwort,VornameErz, NachnameErz, verhältnis);
-                    }
-                    else
-                    {
-                        Toast.makeText(getActivity().getApplicationContext(), "Sie müssen alle Felder ausfüllen!", Toast.LENGTH_LONG).show();
-                    }
-
-
 
 
                 }
                 else
                 {
-                    Toast.makeText(getActivity().getApplicationContext(), "Sie müssen die AGBs aktzeptieren!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity().getApplicationContext(), "Geben Sie eine gültige Email Adresse ein!", Toast.LENGTH_LONG).show();
                 }
                 break;
-
         }
+
     }
 
     private void registerUser(final String gbdatum, final String vorname, final String nachname, final String gender, final String adresse,
@@ -318,7 +329,7 @@ public class Registrieren extends Fragment implements View.OnClickListener {
                     else{
                         String errormessage = jObj.getString("errormsg");
 
-                        Toast.makeText(getActivity().getApplicationContext(), errormessage, Toast.LENGTH_LONG).show();
+                        Toast.makeText(v.getContext(), errormessage, Toast.LENGTH_LONG).show();
                     }
                 }
                 catch (JSONException e){
@@ -358,5 +369,46 @@ public class Registrieren extends Fragment implements View.OnClickListener {
 
         RequestQueue requestQueue = Volley.newRequestQueue(v.getContext());
         requestQueue.add(strReg);
+    }
+
+    boolean isEmailValid(CharSequence email) {
+        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
+
+    boolean isUserOver18(){
+        String datum = etDatum.getText().toString().trim();
+        String[] yeartime = datum.split("\\.");
+        int day = Integer.parseInt(yeartime[0]);
+        int month = Integer.parseInt(yeartime[1]);
+        int year = Integer.parseInt(yeartime[2]);
+
+        int currentyear = Calendar.getInstance().get(Calendar.YEAR);
+        int currentmonth = Calendar.getInstance().get(Calendar.MONTH);
+        int currentday = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+        h = currentyear - year;
+        if (h >= 18 && month >= (currentmonth + 1))
+        {
+            if (month == (currentmonth + 1))
+            {
+                if (day >= currentday)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return true;
+            }
+
+        }
+        else
+        {
+            return false;
+        }
+
     }
 }

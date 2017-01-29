@@ -67,8 +67,11 @@ public class Stunde_Buchen extends Fragment implements View.OnClickListener{
 
 
     View v;
-int ID;
-    String fach, einheiten, lehrer, datum, stunde, minute, fullDatum;
+    int ID, sb;
+
+    String fach, einheiten, lehrer, datum , stunde, minute, fullDatum, tag, monat, jahr;
+    String[] arrdatum;
+
     public Stunde_Buchen() {
         // Required empty public constructor
     }
@@ -83,6 +86,8 @@ int ID;
         Bundle b = getArguments();
 
         ID = b.getInt("ID");
+
+        sb = 1;
 
         v = view;
         etStunde = (EditText) view.findViewById(R.id.et_hour);
@@ -102,6 +107,9 @@ int ID;
         etDate.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 DialogFragment newFragment = new DatePickerFragment();
+                Bundle b = new Bundle();
+                b.putInt("SB", sb);
+                newFragment.setArguments(b);
                 newFragment.show(getFragmentManager(), "datePicker");
             }
         });
@@ -111,7 +119,17 @@ int ID;
         list.add("Mathematik");
         list.add("Deutsch");
         list.add("Englisch");
+        list.add("Franzoesisch");
         list.add("Latein");
+        list.add("Spanisch");
+        list.add("Italienisch");
+        list.add("Russisch");
+        list.add("Rechnungswesen");
+        list.add("Physik");
+        list.add("Chemie");
+        list.add("Mechanik");
+        list.add("Elektrotechnik");
+        list.add("Informatik");
 
 
         adapter1 = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_item, list);
@@ -165,7 +183,7 @@ int ID;
             }
         });
 
-        list3.add(" ");
+        list3.add("");
         list3.add("Herr Huber");
         list3.add("Max Mustermann");
         list3.add("Frau Schmidt");
@@ -204,7 +222,7 @@ int ID;
         switch (v.getId())
         {
             case R.id.btn_vb:
-                            if (!Fach.isEmpty() && !Einheiten.isEmpty() && !Lehrer.isEmpty() && !etDate.getText().toString().isEmpty()
+                            if (!Fach.isEmpty() && !Einheiten.isEmpty() && !etDate.getText().toString().isEmpty()
                                     && !etStunde.getText().toString().isEmpty() && !etMinute.getText().toString().isEmpty())
                             {
                                 if (Integer.parseInt(etStunde.getText().toString()) >= 0 && Integer.parseInt(etStunde.getText().toString()) <= 23
@@ -213,14 +231,14 @@ int ID;
                                     einheiten = Einheiten;
                                     lehrer = Lehrer;
 
-                                    if (!lehrer.equals(" "))
+                                    if (!lehrer.equals(""))
                                     {
                                         lVorname = lehrer.split(" ")[0];
                                         lNachname = lehrer.split(" ")[1];
                                     }
                                     else {
-                                        lVorname = " ";
-                                        lNachname = " ";
+                                        lVorname = "";
+                                        lNachname = "";
                                     }
 
                                     datum = etDate.getText().toString().trim();
@@ -228,11 +246,16 @@ int ID;
                                     minute = etMinute.getText().toString().trim();
 
 
+                                    arrdatum = datum.split("\\.");
+                                    tag = arrdatum[0];
+                                    monat = arrdatum[1];
+                                    jahr = arrdatum[2];
+
+
+                                    fullDatum = jahr + "-" + monat + "-" + tag + " " + stunde + ":" + minute + ":" + "00";
 
 
 
-
-                                    fullDatum = datum + " " + stunde + ":" + minute + " ";
 
 
                                     stundebuchen(fach, einheiten, lVorname, lNachname, fullDatum, Integer.toString(ID));
@@ -265,6 +288,11 @@ int ID;
                     if (!error)
                     {
                         Toast.makeText(getContext().getApplicationContext(), "Stunde gebucht!", Toast.LENGTH_LONG).show();
+                    }
+                    else
+                    {
+                        String errormessage = jObj.getString("errormsg");
+                        Toast.makeText(getActivity().getApplicationContext(), errormessage, Toast.LENGTH_LONG).show();
                     }
 
                 }
