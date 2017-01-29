@@ -80,7 +80,7 @@ public class Login_Schueler extends Fragment implements View.OnClickListener {
                 }
                 else
                 {
-                    Toast.makeText(getActivity().getApplicationContext(), "Die Eingaben sind ungültig!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity().getApplicationContext(), "Geben sie einen Username und Password ein!", Toast.LENGTH_LONG).show();
                 }
                 break;
 
@@ -114,6 +114,10 @@ public class Login_Schueler extends Fragment implements View.OnClickListener {
                         i.putExtra("ID", id);
                         startActivity(i);
 
+                    }
+                    else
+                    {
+                        Toast.makeText(v.getContext(), "Username or password are invalid!", Toast.LENGTH_LONG).show();
                     }
 
                 }

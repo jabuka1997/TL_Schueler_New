@@ -386,11 +386,11 @@ public class Registrieren extends Fragment implements View.OnClickListener {
         int currentmonth = Calendar.getInstance().get(Calendar.MONTH);
         int currentday = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
         h = currentyear - year;
-        if (h >= 18 && month >= (currentmonth + 1))
+        if (h >= 18 && month <= (currentmonth + 1))
         {
             if (month == (currentmonth + 1))
             {
-                if (day >= currentday)
+                if (day <= currentday)
                 {
                     return true;
                 }
