@@ -1,6 +1,7 @@
 package com.example.daniel.toplearningschueler;
 
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -31,7 +32,7 @@ import java.util.Map;
  */
 public class Login_Schueler extends Fragment implements View.OnClickListener {
 
-
+    ProgressDialog dialog;
 
     Button btnlogin, btnpwvergessen, btnregister;
 
@@ -74,7 +75,12 @@ public class Login_Schueler extends Fragment implements View.OnClickListener {
                     sPassword = etpw.getText().toString().trim();
 
 
+                    dialog = ProgressDialog.show(getView().getContext(), "Login",
+                            "Loading. Please wait...", true);
                     loginUser(sUsername, sPassword);
+
+
+
 
 
                 }
@@ -100,24 +106,55 @@ public class Login_Schueler extends Fragment implements View.OnClickListener {
     private void loginUser(final String username, final String password)
     {
         StringRequest strReg = new StringRequest(Request.Method.POST, Config.URLLOGIN, new Response.Listener<String>() {
+
+
             @Override
             public void onResponse(String response) {
+
+
+                int id = 0;                                                              //31.01.2017
+                String errormsg = "", evorname = "";                                        //31.01.2017
+                JSONObject user = null;                                                           //31.01.2017
                 try {
                     JSONObject jObj = new JSONObject(response);
                     boolean error = jObj.getBoolean("error");
-                    int id = jObj.getInt("id");
+
+
+
+                    if (!error) {                                                       //31.01.2017
+                        id = jObj.getInt("id");                                         //31.01.2017
+                        user = jObj.getJSONObject("Benutzer");                          //31.01.2017
+                    }                                                                   //31.01.2017
+                    else                                                                   //31.01.2017
+                        errormsg = jObj.getString("error_msg");                             //31.01.2017
 
                     if (!error)
                     {
+                        dialog.dismiss();
                         Toast.makeText(getActivity().getApplicationContext(), "User successfully logged in.", Toast.LENGTH_LONG).show();
                         Intent i = new Intent(getView().getContext(), Nav_Drawer_list.class);
                         i.putExtra("ID", id);
+                        i.putExtra("Vorname", user.getString("Vorname"));                               //31.01.2017
+                        i.putExtra("Nachname", user.getString("Nachname"));                             //31.01.2017
+                        i.putExtra("Geburtsdatum", user.getString("Geburtsdatum"));                       //31.01.2017
+                        i.putExtra("Strasse", user.getString("Strasse"));                               //31.01.2017
+                        i.putExtra("Plz", user.getString("Plz"));                                        //31.01.2017
+                        i.putExtra("Ort", user.getString("Ort"));                                       //31.01.2017
+                        i.putExtra("Telefon", user.getString("Telefon"));                               //31.01.2017
+                        i.putExtra("Email", user.getString("Email"));                                      //31.01.2017
+                        i.putExtra("Schultyp", user.getString("Schultyp"));                             //31.01.2017
+                        i.putExtra("Schulstufe", user.getString("Schulstufe"));                       //31.01.2017
+                        i.putExtra("EVorname", user.getString("EVorname"));                             //31.01.2017
+                        i.putExtra("ENachname", user.getString("ENachname"));                           //31.01.2017
+                        i.putExtra("Schuelerverhaeltnis", user.getString("Schuelerverhaeltnis"));      //31.01.2017
                         startActivity(i);
+
 
                     }
                     else
                     {
-                        Toast.makeText(v.getContext(), "Username or password are invalid!", Toast.LENGTH_LONG).show();
+
+                        Toast.makeText(v.getContext(), errormsg, Toast.LENGTH_LONG).show();     //31.01.2017
                     }
 
                 }

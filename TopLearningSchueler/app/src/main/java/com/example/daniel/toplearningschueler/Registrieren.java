@@ -327,7 +327,7 @@ public class Registrieren extends Fragment implements View.OnClickListener {
                         startActivity(i);
                     }
                     else{
-                        String errormessage = jObj.getString("errormsg");
+                        String errormessage = jObj.getString("error_msg");
 
                         Toast.makeText(v.getContext(), errormessage, Toast.LENGTH_LONG).show();
                     }

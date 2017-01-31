@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 /**
@@ -17,6 +18,8 @@ public class Profil extends Fragment {
 
 
     Button btnProfilv;
+    String vorname, nachname, gebdat, strasse, plz, ort, telefon, email, schultyp, schulstufe, evorname, enachname, schuelerverh;
+    TextView tvVorname, tvNachname, tvGB, tvAdresse,  tvPLZ, tvOrt, tvTelefon, tvEmail, tvSchultyp, tvSchulstufe, tvEVorname, tvENachname, tvVerhältnis;
 
     public Profil() {
         // Required empty public constructor
@@ -31,6 +34,52 @@ public class Profil extends Fragment {
         getActivity().setTitle("Profil");
 
         btnProfilv = (Button) view.findViewById(R.id.btn_pv);
+
+        tvVorname = (TextView) view.findViewById(R.id.tv_vorname);
+        tvNachname = (TextView) view.findViewById(R.id.tv_nachname);
+        tvGB = (TextView) view.findViewById(R.id.tv_birthday);
+        tvAdresse = (TextView) view.findViewById(R.id.tv_adresse);
+        tvPLZ = (TextView) view.findViewById(R.id.tv_plz);
+        tvOrt = (TextView) view.findViewById(R.id.tv_ort);
+        tvTelefon = (TextView) view.findViewById(R.id.tv_telefon);
+        tvEmail = (TextView) view.findViewById(R.id.tv_email);
+        tvSchultyp = (TextView) view.findViewById(R.id.tv_schultyp);
+        tvSchulstufe = (TextView) view.findViewById(R.id.tv_schulstufe);
+        tvEVorname = (TextView) view.findViewById(R.id.tv_eVorname);
+        tvENachname = (TextView) view.findViewById(R.id.tv_eNachname);
+        tvVerhältnis = (TextView) view.findViewById(R.id.tv_verhältnis);
+
+
+        Bundle b = getArguments();
+        email =  b.getString("Email");
+        vorname = b.getString("Vorname");                               //31.01.2017
+        nachname = b.getString("Nachname");                             //31.01.2017
+        gebdat = b.getString("Geburtsdatum");                           //31.01.2017
+        strasse = b.getString("Strasse");                               //31.01.2017
+        plz = b.getString("Plz");                                        //31.01.2017
+        ort = b.getString("Ort");                                       //31.01.2017
+        telefon = b.getString("Telefon");                               //31.01.2017
+        schultyp  = b.getString("Schultyp");                             //31.01.2017
+        schulstufe = b.getString("Schulstufe");                         //31.01.2017
+        evorname = b.getString("EVorname");                             //31.01.2017
+        enachname = b.getString("ENachname");                           //31.01.2017
+        schuelerverh = b.getString("Schuelerverhaeltnis");              //31.01.2017
+
+
+        tvVorname.setText(vorname);
+        tvNachname.setText(nachname);
+        tvGB.setText(gebdat);
+        tvAdresse.setText(strasse);
+        tvPLZ.setText(plz);
+        tvOrt.setText(ort);
+        tvTelefon.setText(telefon);
+        tvEmail.setText(email);
+        tvSchultyp.setText(schultyp);
+        tvSchulstufe.setText(schulstufe);
+        tvEVorname.setText(evorname);
+        tvENachname.setText(enachname);
+        tvVerhältnis.setText(schuelerverh);
+
 
         btnProfilv.setOnClickListener(new View.OnClickListener() {
             @Override

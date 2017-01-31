@@ -291,7 +291,7 @@ public class Stunde_Buchen extends Fragment implements View.OnClickListener{
                     }
                     else
                     {
-                        String errormessage = jObj.getString("errormsg");
+                        String errormessage = jObj.getString("error_msg");
                         Toast.makeText(getActivity().getApplicationContext(), errormessage, Toast.LENGTH_LONG).show();
                     }
 

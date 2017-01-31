@@ -42,6 +42,19 @@ public class Nav_Drawer_list extends AppCompatActivity
         Hauptmenu f1 = new Hauptmenu();
         Bundle b = new Bundle();
         b.putInt("ID", i.getIntExtra("ID", 0));
+        b.putString("Vorname", i.getStringExtra("Vorname"));
+        b.putString("Nachname", i.getStringExtra("Nachname"));
+        b.putString("Geburtsdatum", i.getStringExtra("Geburtsdatum"));
+        b.putString("Strasse", i.getStringExtra("Strasse"));
+        b.putString("Plz", i.getStringExtra("Plz"));
+        b.putString("Ort", i.getStringExtra("Ort"));
+        b.putString("Telefon", i.getStringExtra("Telefon"));
+        b.putString("Email", i.getStringExtra("Email"));
+        b.putString("Schultyp", i.getStringExtra("Schultyp"));
+        b.putString("Schulstufe", i.getStringExtra("Schulstufe"));
+        b.putString("EVorname", i.getStringExtra("EVorname"));
+        b.putString("ENachname", i.getStringExtra("ENachname"));
+        b.putString("Schuelerverhaeltnis", i.getStringExtra("Schuelerverhaeltnis"));
         f1.setArguments(b);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, f1);
@@ -118,6 +131,21 @@ public class Nav_Drawer_list extends AppCompatActivity
 
         } else if (id == R.id.nav_profil) {
             Profil p1 = new Profil();
+            Bundle b1 = new Bundle();
+            b1.putString("Vorname", i.getStringExtra("Vorname"));
+            b1.putString("Nachname", i.getStringExtra("Nachname"));
+            b1.putString("Geburtsdatum", i.getStringExtra("Geburtsdatum"));
+            b1.putString("Strasse", i.getStringExtra("Strasse"));
+            b1.putString("Plz", i.getStringExtra("Plz"));
+            b1.putString("Ort", i.getStringExtra("Ort"));
+            b1.putString("Telefon", i.getStringExtra("Telefon"));
+            b1.putString("Email", i.getStringExtra("Email"));
+            b1.putString("Schultyp", i.getStringExtra("Schultyp"));
+            b1.putString("Schulstufe", i.getStringExtra("Schulstufe"));
+            b1.putString("EVorname", i.getStringExtra("EVorname"));
+            b1.putString("ENachname", i.getStringExtra("ENachname"));
+            b1.putString("Schuelerverhaeltnis", i.getStringExtra("Schuelerverhaeltnis"));
+            p1.setArguments(b1);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
             ft.replace(R.id.fragment_container, p1).addToBackStack("tag").commit();
