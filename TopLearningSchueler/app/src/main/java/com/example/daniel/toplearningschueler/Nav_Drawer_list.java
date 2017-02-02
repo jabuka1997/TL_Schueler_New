@@ -55,6 +55,7 @@ public class Nav_Drawer_list extends AppCompatActivity
         b.putString("EVorname", i.getStringExtra("EVorname"));
         b.putString("ENachname", i.getStringExtra("ENachname"));
         b.putString("Schuelerverhaeltnis", i.getStringExtra("Schuelerverhaeltnis"));
+        b.putString("Password", i.getStringExtra("Password"));
         f1.setArguments(b);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_container, f1);
@@ -132,6 +133,7 @@ public class Nav_Drawer_list extends AppCompatActivity
         } else if (id == R.id.nav_profil) {
             Profil p1 = new Profil();
             Bundle b1 = new Bundle();
+            b1.putInt("ID", i.getIntExtra("ID", 0));
             b1.putString("Vorname", i.getStringExtra("Vorname"));
             b1.putString("Nachname", i.getStringExtra("Nachname"));
             b1.putString("Geburtsdatum", i.getStringExtra("Geburtsdatum"));
@@ -145,6 +147,7 @@ public class Nav_Drawer_list extends AppCompatActivity
             b1.putString("EVorname", i.getStringExtra("EVorname"));
             b1.putString("ENachname", i.getStringExtra("ENachname"));
             b1.putString("Schuelerverhaeltnis", i.getStringExtra("Schuelerverhaeltnis"));
+            b1.putString("Password", i.getStringExtra("Password"));
             p1.setArguments(b1);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);

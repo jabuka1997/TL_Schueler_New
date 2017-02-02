@@ -44,7 +44,6 @@ public class Login_Schueler extends Fragment implements View.OnClickListener {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -75,8 +74,6 @@ public class Login_Schueler extends Fragment implements View.OnClickListener {
                     sPassword = etpw.getText().toString().trim();
 
 
-                    dialog = ProgressDialog.show(getView().getContext(), "Login",
-                            "Loading. Please wait...", true);
                     loginUser(sUsername, sPassword);
 
 
@@ -130,7 +127,7 @@ public class Login_Schueler extends Fragment implements View.OnClickListener {
 
                     if (!error)
                     {
-                        dialog.dismiss();
+
                         Toast.makeText(getActivity().getApplicationContext(), "User successfully logged in.", Toast.LENGTH_LONG).show();
                         Intent i = new Intent(getView().getContext(), Nav_Drawer_list.class);
                         i.putExtra("ID", id);
@@ -146,7 +143,8 @@ public class Login_Schueler extends Fragment implements View.OnClickListener {
                         i.putExtra("Schulstufe", user.getString("Schulstufe"));                       //31.01.2017
                         i.putExtra("EVorname", user.getString("EVorname"));                             //31.01.2017
                         i.putExtra("ENachname", user.getString("ENachname"));                           //31.01.2017
-                        i.putExtra("Schuelerverhaeltnis", user.getString("Schuelerverhaeltnis"));      //31.01.2017
+                        i.putExtra("Schuelerverhaeltnis", user.getString("Schuelerverhaeltnis"));
+                        i.putExtra("Password", sPassword);                                              //31.01.2017
                         startActivity(i);
 
 

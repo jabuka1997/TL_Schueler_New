@@ -158,6 +158,7 @@ public class Registrieren extends Fragment implements View.OnClickListener {
                     Schulttyp = pos;
 
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
 
@@ -177,7 +178,6 @@ public class Registrieren extends Fragment implements View.OnClickListener {
                     pos = spSchulstufe.getItemIdAtPosition(i);
                     pos++;
                     Schulstufe = Long.toString(pos);
-
 
 
 
@@ -262,6 +262,7 @@ public class Registrieren extends Fragment implements View.OnClickListener {
                                     !etEmail.getText().toString().isEmpty() && !etTelefon.getText().toString().isEmpty() && !Schulttyp.isEmpty() &&
                                     !Schulstufe.isEmpty() && !etPW.getText().toString().isEmpty() && !etVornameErz.getText().toString().isEmpty() &&
                                     !etNachnameErz.getText().toString().isEmpty() && !Verhältnis.isEmpty()) {
+
                                 GBDatum = etDatum.getText().toString().trim();
                                 Vorname = etVorname.getText().toString().trim();
                                 Nachname = etNachname.getText().toString().trim();
@@ -386,6 +387,7 @@ public class Registrieren extends Fragment implements View.OnClickListener {
         int currentmonth = Calendar.getInstance().get(Calendar.MONTH);
         int currentday = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
         h = currentyear - year;
+
         if (h >= 18 && month <= (currentmonth + 1))
         {
             if (month == (currentmonth + 1))

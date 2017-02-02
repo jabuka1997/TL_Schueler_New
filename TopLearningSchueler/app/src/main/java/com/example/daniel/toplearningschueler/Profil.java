@@ -18,9 +18,10 @@ public class Profil extends Fragment {
 
 
     Button btnProfilv;
-    String vorname, nachname, gebdat, strasse, plz, ort, telefon, email, schultyp, schulstufe, evorname, enachname, schuelerverh;
+    String vorname, nachname, gebdat, strasse, plz, ort, telefon, email, schultyp, schulstufe, evorname, enachname, schuelerverh, userpassword;
     TextView tvVorname, tvNachname, tvGB, tvAdresse,  tvPLZ, tvOrt, tvTelefon, tvEmail, tvSchultyp, tvSchulstufe, tvEVorname, tvENachname, tvVerhältnis;
 
+    int ID;
     public Profil() {
         // Required empty public constructor
     }
@@ -51,6 +52,7 @@ public class Profil extends Fragment {
 
 
         Bundle b = getArguments();
+        ID = b.getInt("ID");
         email =  b.getString("Email");
         vorname = b.getString("Vorname");                               //31.01.2017
         nachname = b.getString("Nachname");                             //31.01.2017
@@ -64,6 +66,7 @@ public class Profil extends Fragment {
         evorname = b.getString("EVorname");                             //31.01.2017
         enachname = b.getString("ENachname");                           //31.01.2017
         schuelerverh = b.getString("Schuelerverhaeltnis");              //31.01.2017
+        userpassword = b.getString("Password");
 
 
         tvVorname.setText(vorname);
@@ -85,6 +88,23 @@ public class Profil extends Fragment {
             @Override
             public void onClick(View view) {
                 Profil_verwalten p1 = new Profil_verwalten();
+                Bundle b1 = new Bundle();
+                b1.putInt("ID", ID);
+                b1.putString("Vorname", vorname);
+                b1.putString("Nachname", nachname);
+                b1.putString("Geburtsdatum", gebdat);
+                b1.putString("Strasse", strasse);
+                b1.putString("Plz", plz);
+                b1.putString("Ort", ort);
+                b1.putString("Telefon", telefon);
+                b1.putString("Email", email);
+                b1.putString("Schultyp", schultyp);
+                b1.putString("Schulstufe", schulstufe);
+                b1.putString("EVorname", evorname);
+                b1.putString("ENachname", enachname);
+                b1.putString("Schuelerverhaeltnis", schuelerverh);
+                b1.putString("Password", userpassword);
+                p1.setArguments(b1);
                 FragmentTransaction ft1 = getFragmentManager().beginTransaction();
                 ft1.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
                 ft1.replace(R.id.fragment_container, p1).addToBackStack( "tag" ).commit();

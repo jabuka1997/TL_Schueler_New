@@ -6,12 +6,154 @@
     tools:context="com.example.daniel.toplearningschueler.Profil_verwalten">
 
     <!-- TODO: Update blank fragment layout -->
+
+    <EditText
+
+
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="200dp"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/et_vorname" />
+
+    <EditText
+
+
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="160dp"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/et_adresse" />
+
+    <EditText
+
+
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="120dp"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/et_plz" />
+
+    <EditText
+
+
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="120dp"
+        android:layout_marginLeft="160dp"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/et_ort" />
+
+    <EditText
+
+
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/et_telefon" />
+
+    <EditText
+
+
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="80dp"
+        android:layout_marginLeft="160dp"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/et_email" />
+
+    <EditText
+
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/et_schultyp" />
+    <EditText
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/et_schulstufe" />
+
     <TextView
+        android:text="Eltern"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="190dp"
+        android:layout_marginTop="60dp"
         android:layout_gravity="center_vertical"
-        android:text="Profil verwalten" />
+        android:id="@+id/tv_eltern" />
+
+    <EditText
+
+
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="20dp"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/et_eVorname" />
+
+    <EditText
+
+
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="170dp"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/et_eNachname" />
+
+    <EditText
+
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="140dp"
+        android:layout_marginLeft="20dp"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/et_verhältnis" />
+
+
+    <Button
+        android:text="Speichern"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="220dp"
+        android:id="@+id/btn_speichern" />
+    <Button
+        android:text="Passwort ändern"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="220dp"
+        android:id="@+id/btn_pwändern" />
+
+
+    <EditText
+
+
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="160dp"
+        android:layout_marginLeft="160dp"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/et_birthday" />
+
+    <EditText
+
+
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="200dp"
+        android:layout_marginLeft="160dp"
+        android:layout_gravity="center_vertical"
+        android:id="@+id/et_nachname" />
 
 </FrameLayout>
