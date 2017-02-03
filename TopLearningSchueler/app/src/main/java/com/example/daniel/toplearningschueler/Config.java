@@ -9,4 +9,5 @@ public class Config {
     public static String URLSTUNDEBUCHEN = "http://php.toplearningpro.webspace.htl-donaustadt.at/Stundebuchen.php";
     public static String URLLOGIN = "http://php.toplearningpro.webspace.htl-donaustadt.at/login.php";
     public static String URLPROFILCHANGE = "http://php.toplearningpro.webspace.htl-donaustadt.at/Profilaktualisieren.php";
+    public static String URLPWCHANGE = "http://php.toplearningpro.webspace.htl-donaustadt.at/Passwortaendern.php";
 }

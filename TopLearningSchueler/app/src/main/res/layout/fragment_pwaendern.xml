@@ -1,0 +1,66 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    tools:context="com.example.daniel.toplearningschueler.PWaendern">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:text="Altes Passwort:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="200dp"
+        android:id="@+id/tv_altpw" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:layout_marginBottom="150dp"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:id="@+id/et_altpw" />
+
+    <TextView
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
+        android:text="Neues Passwort:"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_neupw" />
+
+    <EditText
+        android:hint="Passwort eingeben..."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:layout_marginBottom="50dp"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:id="@+id/et_neupw" />
+
+
+    <EditText
+        android:hint="Passwort nochmal eingeben..."
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+
+        android:layout_gravity="center"
+        android:ems="10"
+        android:id="@+id/et_neupw2" />
+
+    <Button
+        android:text="Neues Passwort speichern"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="200dp"
+        android:id="@+id/btn_spw" />
+
+</FrameLayout>

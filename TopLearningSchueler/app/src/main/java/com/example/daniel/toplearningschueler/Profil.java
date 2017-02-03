@@ -3,6 +3,7 @@ package com.example.daniel.toplearningschueler;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -107,7 +108,12 @@ public class Profil extends Fragment {
                 p1.setArguments(b1);
                 FragmentTransaction ft1 = getFragmentManager().beginTransaction();
                 ft1.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
-                ft1.replace(R.id.fragment_container, p1).addToBackStack( "tag" ).commit();
+                ft1.replace(R.id.fragment_container, p1).addToBackStack("tag").commit();
+
+
+
+
+
             }
         });
 

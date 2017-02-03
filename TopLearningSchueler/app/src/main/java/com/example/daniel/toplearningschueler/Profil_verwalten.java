@@ -4,6 +4,7 @@ package com.example.daniel.toplearningschueler;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -200,7 +201,14 @@ public class Profil_verwalten extends Fragment implements View.OnClickListener{
                 break;
 
             case R.id.btn_pwändern:
-
+                PWaendern pw1 = new PWaendern();
+                Bundle b1 = new Bundle();
+                b1.putInt("ID", ID);
+                b1.putString("Password", userpassword);
+                pw1.setArguments(b1);
+                FragmentTransaction ft1 = getFragmentManager().beginTransaction();
+                ft1.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
+                ft1.replace(R.id.fragment_container, pw1).addToBackStack("tag").commit();
                 break;
         }
     }
@@ -217,30 +225,26 @@ public class Profil_verwalten extends Fragment implements View.OnClickListener{
                     JSONObject jObj = new JSONObject(response);
                     boolean error = jObj.getBoolean("error");
 
-                    if (!error)
-                    {
+                    if (!error) {
                         Toast.makeText(v.getContext(), "Profil erfolgreich geändert!", Toast.LENGTH_LONG).show();
-                        Profil p1 = new Profil();
-                        Bundle b1 = new Bundle();
-                        b1.putInt("ID", ID);
-                        b1.putString("Vorname", vorname);
-                        b1.putString("Nachname", nachname);
-                        b1.putString("Geburtsdatum", gbdatum);
-                        b1.putString("Strasse", adresse);
-                        b1.putString("Plz", plz);
-                        b1.putString("Ort", ort);
-                        b1.putString("Telefon", telefon);
-                        b1.putString("Email", email);
-                        b1.putString("Schultyp", schultyp);
-                        b1.putString("Schulstufe", schulstufe);
-                        b1.putString("EVorname", vornameerz);
-                        b1.putString("ENachname", nachnameerz);
-                        b1.putString("Schuelerverhaeltnis", verhältnis);
-                        b1.putString("Password", userpassword);
-                        p1.setArguments(b1);
-                        FragmentTransaction ft = getFragmentManager().beginTransaction();
-                        ft.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
-                        ft.replace(R.id.fragment_container, p1).addToBackStack("tag").commit();
+                        Intent i = new Intent(getView().getContext(), Nav_Drawer_list.class);
+                        i.putExtra("ID", id);
+                        i.putExtra("Vorname", vorname);                               //31.01.2017
+                        i.putExtra("Nachname", nachname);                             //31.01.2017
+                        i.putExtra("Geburtsdatum", gbdatum);                       //31.01.2017
+                        i.putExtra("Strasse", adresse);                               //31.01.2017
+                        i.putExtra("Plz", plz);                                        //31.01.2017
+                        i.putExtra("Ort", ort);                                       //31.01.2017
+                        i.putExtra("Telefon", telefon);                               //31.01.2017
+                        i.putExtra("Email", email);                                      //31.01.2017
+                        i.putExtra("Schultyp", schultyp);                             //31.01.2017
+                        i.putExtra("Schulstufe", schulstufe);                       //31.01.2017
+                        i.putExtra("EVorname", vornameerz);                             //31.01.2017
+                        i.putExtra("ENachname", nachnameerz);                           //31.01.2017
+                        i.putExtra("Schuelerverhaeltnis", verhältnis);
+                        i.putExtra("Password", userpassword);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(i);
 
 
                     }

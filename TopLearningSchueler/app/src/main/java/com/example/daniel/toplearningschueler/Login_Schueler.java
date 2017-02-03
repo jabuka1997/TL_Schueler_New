@@ -58,6 +58,8 @@ public class Login_Schueler extends Fragment implements View.OnClickListener {
         etpw = (EditText) view.findViewById(R.id.et_passwort);
 
 
+        etpw.setText("");
+
         btnlogin.setOnClickListener(this);
         btnregister.setOnClickListener(this);
         btnpwvergessen.setOnClickListener(this);
@@ -146,7 +148,6 @@ public class Login_Schueler extends Fragment implements View.OnClickListener {
                         i.putExtra("Schuelerverhaeltnis", user.getString("Schuelerverhaeltnis"));
                         i.putExtra("Password", sPassword);                                              //31.01.2017
                         startActivity(i);
-
 
                     }
                     else

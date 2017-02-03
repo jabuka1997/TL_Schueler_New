@@ -1,12 +1,15 @@
 package com.example.daniel.toplearningschueler;
 
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
+import android.view.KeyEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -27,6 +30,7 @@ public class Nav_Drawer_list extends AppCompatActivity
     NavigationView navigationView =  null;
     Toolbar toolbar = null;
 
+
     Intent i;
 
     @Override
@@ -37,7 +41,6 @@ public class Nav_Drawer_list extends AppCompatActivity
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         i = getIntent();
-
 
         Hauptmenu f1 = new Hauptmenu();
         Bundle b = new Bundle();
@@ -63,6 +66,8 @@ public class Nav_Drawer_list extends AppCompatActivity
 
 
 
+
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -79,7 +84,9 @@ public class Nav_Drawer_list extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+
             super.onBackPressed();
+
         }
 
 
@@ -127,8 +134,7 @@ public class Nav_Drawer_list extends AppCompatActivity
             s1.setArguments(b);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
-            ft.replace(R.id.fragment_container, s1).addToBackStack("tag").commit();
-
+            ft.replace(R.id.fragment_container, s1).addToBackStack(null).commit();
 
         } else if (id == R.id.nav_profil) {
             Profil p1 = new Profil();
@@ -194,4 +200,7 @@ public class Nav_Drawer_list extends AppCompatActivity
 
         return true;
     }
+
+
+
 }

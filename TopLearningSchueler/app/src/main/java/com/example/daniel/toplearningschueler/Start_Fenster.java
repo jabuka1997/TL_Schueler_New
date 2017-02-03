@@ -20,8 +20,6 @@ public class Start_Fenster extends AppCompatActivity{
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.activity_start_fenster, ls);
         fragmentTransaction.commit();
-
-
     }
 
 }
