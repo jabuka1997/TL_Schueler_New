@@ -122,6 +122,9 @@ public class Nav_Drawer_list extends AppCompatActivity
 
         if (id == R.id.nav_termine) {
             Termine t1 = new Termine();
+            Bundle b = new Bundle();
+            b.putInt("ID", i.getIntExtra("ID", 0));
+            t1.setArguments(b);
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
             ft.replace(R.id.fragment_container, t1).addToBackStack("tag").commit();

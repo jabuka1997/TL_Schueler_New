@@ -6,15 +6,13 @@ package com.example.daniel.toplearningschueler;
 
 public class Termin {
     private String Datum;
-    private String Uhrzeit;
     private String Fach;
     private Lehrer MeinLehrer;
 
 
-    public Termin(String datum, String uhrzeit, String fach, Lehrer mylehrer)
+    public Termin(String datum, String fach, Lehrer mylehrer)
     {
         Datum = datum;
-        Uhrzeit = uhrzeit;
         Fach = fach;
         MeinLehrer = mylehrer;
     }
@@ -27,8 +25,4 @@ public class Termin {
     }
 
     public String getMeinLehrer() { return MeinLehrer.Vorname + " " + MeinLehrer.Nachname; }
-
-    public String getUhrzeit() {
-        return Uhrzeit;
-    }
 }

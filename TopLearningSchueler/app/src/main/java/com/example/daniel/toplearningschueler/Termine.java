@@ -1,6 +1,7 @@
 package com.example.daniel.toplearningschueler;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -14,10 +15,24 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -29,22 +44,15 @@ public class Termine extends Fragment {
     private List<String> Spinnerlist = new ArrayList<String>();
     private List<Termin> Terminlistenew = new ArrayList<Termin>();
     private List<Termin> Leereliste = new ArrayList<Termin>();
-
-
-
-
     ArrayAdapter<Termin> adapter;
     ListView mylist;
-
-
-
     // Search EditText
     EditText inputSearch;
+    View v;
 
     public Termine() {
         // Required empty public constructor
     }
-
 
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
@@ -53,16 +61,13 @@ public class Termine extends Fragment {
         View view = inflater.inflate(R.layout.fragment_termine, container, false);;
         getActivity().setTitle("Meine Termine");
         final ArrayList<Termin>[] filteredList = new ArrayList[]{new ArrayList<Termin>()};
-
+        v = view;
         final Spinner sinner = (Spinner) view.findViewById(R.id.sp_schultyp);
 
-        Terminliste.add(new Termin("12.12.2016", "10:00", "Deutsch", new Lehrer("Hans", "Güntha")));
-        Terminliste.add(new Termin("12.12.2016", "16:00", "Englisch", new Lehrer("Jürgen", "Aldea")));
-        Terminliste.add(new Termin("13.12.2016", "09:00", "Mathematik", new Lehrer("Peter", "Schmidt")));
-        Terminliste.add(new Termin("13.12.2016", "08:30", "Physik", new Lehrer("Tom", "Baric")));
-        //Terminliste.add(new Termin("14.12.2016", "20:00", "Physik", new Lehrer("Tim", "Müller")));
-        Terminliste.add(new Termin("15.12.2016", "06:45", "Chemie", new Lehrer("Daniel", "Zald")));
 
+        Bundle b = getArguments();
+        int ID = b.getInt("ID");
+        getTermine(String.valueOf(ID));
 
 
         Spinnerlist.add("Datum Neu --> Alt");
@@ -74,10 +79,6 @@ public class Termine extends Fragment {
 
 
         inputSearch = (EditText) view.findViewById(R.id.inputSearch);
-
-        adapter = new MyListAdapter(Terminliste);
-        mylist = (ListView) view.findViewById(R.id.list_view);
-        mylist.setAdapter(adapter);
 
 
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(view.getContext(), android.R.layout.simple_spinner_item, Spinnerlist);
@@ -152,7 +153,12 @@ public class Termine extends Fragment {
         // Inflate the layout for this fragment
         return view;
     }
-
+    private void SetADApt()
+    {
+        adapter = new MyListAdapter(Terminliste);
+        mylist = (ListView) v.findViewById(R.id.list_view);
+        mylist.setAdapter(adapter);
+    }
     private void Fachaz() {
         Terminlistenew.clear();
         List<String> fachlist  = new ArrayList<String>();
@@ -267,7 +273,7 @@ public class Termine extends Fragment {
             textView.setText(currentTermin.getFach());
 
             TextView textView1 = (TextView)layout.findViewById(R.id.textView3);
-            textView1.setText(currentTermin.getDatum() + " " + currentTermin.getUhrzeit());
+            textView1.setText(currentTermin.getDatum());
 
             TextView textView3 = (TextView)layout.findViewById(R.id.textView2);
             textView3.setText(currentTermin.getMeinLehrer());
@@ -293,10 +299,6 @@ public class Termine extends Fragment {
                     filteredlist.add(t);
                     found=true;
                 }
-                if(t.getUhrzeit().contains(keyw)&&found==false){
-                    filteredlist.add(t);
-                    found=true;
-                }
                 found=false;
             }
             catch (Exception e) {
@@ -305,5 +307,54 @@ public class Termine extends Fragment {
         }
         return filteredlist;
     }
+    private void getTermine(final String benutzerid)
+    {
+        StringRequest strReg = new StringRequest(Request.Method.POST, Config.URLGETTERMINE, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    if (!response.equals("true"))
+                    {
+                        JSONObject jObj = new JSONObject(response);
+                        JSONArray jArr = jObj.getJSONArray("result");
+                        for (int i = 0; i < jArr.length(); i++)
+                        {
+                            JSONObject jObg1 = new JSONObject(jArr.getString(i));
+                            String Vorname = jObg1.getString("Vorname");
+                            String Nachname = jObg1.getString("Nachname");
+                            String Fach = jObg1.getString("Bezeichnung");
+                            String Datum = jObg1.getString("Datum_Uhrzeit");
+                            Terminliste.add(new Termin(Datum, Fach, new Lehrer(Vorname, Nachname)));
+                        }
+                        SetADApt();
+                    }
+                    else
+                    {
+                        Toast.makeText(v.getContext(), "Sie haben derzeit noch keine Termine!", Toast.LENGTH_LONG).show();
+                    }
 
+                }
+                catch (JSONException e){
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(v.getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("BenutzerID", benutzerid);
+
+
+                return params;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(v.getContext());
+        requestQueue.add(strReg);
+    }
 }
