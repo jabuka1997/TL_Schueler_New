@@ -150,6 +150,15 @@ public class Termine extends Fragment {
 
             }
         });
+
+        mylist.setAdapter(adapter);
+        mylist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
+
         // Inflate the layout for this fragment
         return view;
     }

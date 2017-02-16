@@ -60,10 +60,13 @@ public class Hauptmenu extends Fragment implements View.OnClickListener{
                 break;
 
             case R.id.btn_termine:
-                Termine f2 = new Termine();
-                FragmentTransaction ft2 = getFragmentManager().beginTransaction();
-                ft2.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
-                ft2.replace(R.id.fragment_container, f2).addToBackStack( "tag" ).commit();
+                Termine t1 = new Termine();
+                Bundle b1 = new Bundle();
+                b1.putInt("ID", ID);
+                t1.setArguments(b1);
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right);
+                ft.replace(R.id.fragment_container, t1).addToBackStack("tag").commit();
 
                 break;
 
