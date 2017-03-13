@@ -58,7 +58,7 @@ public class Termine extends Fragment {
     public View onCreateView(final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_termine, container, false);;
+        View view = inflater.inflate(R.layout.fragment_termine, container, false);
         getActivity().setTitle("Meine Termine");
         final ArrayList<Termin>[] filteredList = new ArrayList[]{new ArrayList<Termin>()};
         v = view;
