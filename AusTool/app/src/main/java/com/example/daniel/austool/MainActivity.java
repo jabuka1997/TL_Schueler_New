@@ -93,6 +93,8 @@ public class MainActivity extends AppCompatActivity {
         graphView.getLegendRenderer().setVisible(true);
         graphView.getLegendRenderer().setAlign(LegendRenderer.LegendAlign.TOP);
 
+
+
         if (monat == "März")
         {
             series = new BarGraphSeries<>(new DataPoint[]{
