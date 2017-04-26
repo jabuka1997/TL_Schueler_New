@@ -4,6 +4,7 @@ package com.example.daniel.toplearningschueler;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -151,13 +152,8 @@ public class Termine extends Fragment {
             }
         });
 
-        mylist.setAdapter(adapter);
-        mylist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-            }
-        });
+
 
         // Inflate the layout for this fragment
         return view;

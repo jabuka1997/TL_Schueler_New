@@ -9,7 +9,7 @@ package com.example.daniel.toplearningschueler;
 
 public class Start_Fenster extends AppCompatActivity{
 
-    Button btnregister, btnlogin;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
